@@ -1,28 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+	state = {
+		email: '',
+		password: '',
+	};
+
+	render() {
+		return (
+			<div>
+				<Paper className="paper">
+
+					<FormControl margin="normal" required fullWidth>
+						<InputLabel htmlFor="email"> Email Address </InputLabel>
+						<Input id="email" name="email" autoComplete="email" autoFocus
+				            onChange={event => this.setState({email: event.target.value})}/>
+					</FormControl>
+
+					<FormControl margin="normal" required fullWidth>
+						<InputLabel htmlFor="password"> Password </InputLabel>
+						<Input name="password" type="password" id="password" autoComplete="current-password"
+							onChange={event => this.setState({password: event.target.value})}/>
+					</FormControl>
+
+					<div className="buttonSeparator"/>
+
+					<Button fullWidth variant="contained" color="primary"
+					        onClick={() => { console.log(this.state.email + " " + this.state.password); }}> Sign in </Button>
+
+				</Paper>
+			</div>
+		);
+	}
 }
 
 export default App;
