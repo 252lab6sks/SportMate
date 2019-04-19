@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import myImage from "./basketball.png"
+import Sky from 'react-sky';
 
 class App extends Component {
 
@@ -24,6 +26,9 @@ class App extends Component {
     return (
       <div className="App">
       <div className="App-header">
+      
+        
+          
           <div className = "Auth-main-container">
             {/* <form onSubmit={this.handleSubmit}>
               <label>
@@ -34,6 +39,17 @@ class App extends Component {
             </form> */}
           </div>
        </div> 
+        
+      <Sky 
+          images={{
+            0: myImage 
+          }}
+          how={130} /* Pass the number of images Sky will render chosing randomly */
+          time={40} /* time of animation */
+          size={'100px'} /* size of the rendered images */
+          background={'black'} /* color of background */
+        />
+      
       </div>
       
     );
