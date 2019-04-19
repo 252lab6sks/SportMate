@@ -12,12 +12,18 @@ class App extends Component {
     state = {
         email: '',
         password: '',
+        uid: '',
+        loggedIn: false
     };
 
     createUser = (email, password) => {
         auth.createUserWithEmailAndPassword(email, password)
             .then((response) => {
-                console.log(response)
+                console.log(response);
+                this.setState({
+                    loggedIn: true,
+                    uid: response.user.uid
+                });
             })
             .catch(error => {
                 console.log(error)
@@ -28,16 +34,19 @@ class App extends Component {
     signIn = (email, password) => {
         auth.signInWithEmailAndPassword(email, password)
             .then((response) => {
-                console.log(response)
+                console.log(response);
+                this.setState({
+                    loggedIn: true,
+                    uid: response.user.uid
+                });
             })
             .catch(error => {
                 console.log(error)
             });
     };
 
-
-    render() {
-        return (
+    signInForm = () => {
+        return(
             <div>
                 <Paper className="paper">
 
@@ -67,6 +76,23 @@ class App extends Component {
                 </Paper>
             </div>
         );
+    };
+
+    dashboard = () => {
+        return(
+            <div>
+                <Paper className="paper">
+                    <h1>Hey</h1>
+                </Paper>
+            </div>
+        )
+    };
+
+    render() {
+        if(!this.state.loggedIn)
+            return this.signInForm();
+        else
+           return this.dashboard();
 
     }
 }
