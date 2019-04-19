@@ -34,5 +34,18 @@
   justify-content: center;
 }
 
+.Button-container{
+  color: white;
+}
+
+.Button{
+  
+}
+
+.Text-input-container{
+  display: flex;
+  flex-direction: column;
+}
+
 
 

@@ -2,41 +2,60 @@ import React, { Component } from 'react';
 import './App.css';
 import myImage from "./basketball.png"
 import Sky from 'react-sky';
+import Button from '@material-ui/core/Button';
 
 class App extends Component {
 
  constructor(props) {
     super(props);
-    this.state = {value: ''};
-
-    // this.handleChange = this.handleChange.bind(this);
-    
+    this.state = {
+      email: '', 
+      password: '',
+    };  
   }
 
   handleChange=(event)=> {
     this.setState({value: event.target.value});
   }
 
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
-  }
+  
   
   render() {
     return (
       <div className="App">
       <div className="App-header">
       
-        
-          
           <div className = "Auth-main-container">
-            {/* <form onSubmit={this.handleSubmit}>
-              <label>
-                Name:
-                <input type="text" value={this.state.value} onChange={this.handleChange} />
-              </label>
-              <input type="submit" value= "Submit"/>
-            </form> */}
+            <form onSubmit={this.handleSubmit}>
+              <div className="Text-input-container">
+                  <label>
+                    Email:
+                        <input type="text" value={this.state.email} onChange={(event)=>{
+                          this.setState({email: event.target.value})
+                        }} />
+                  </label>
+                  <label>
+                    Password:
+                        <input type="text" value={this.state.password} onChange={(event)=>{
+                          this.setState({password: event.target.value})
+                        }} />
+                  </label>
+              </div>
+
+              
+
+                <div className = "Button-container">
+                    <Button class="Button">
+                    Sign-In
+                    </Button>
+
+                    <Button class="Button">
+                    Sign-Up
+                    </Button>
+
+
+                </div>
+            </form>
           </div>
        </div> 
         
@@ -44,10 +63,10 @@ class App extends Component {
           images={{
             0: myImage 
           }}
-          how={130} /* Pass the number of images Sky will render chosing randomly */
-          time={40} /* time of animation */
-          size={'100px'} /* size of the rendered images */
-          background={'black'} /* color of background */
+          how={130} 
+          time={40} 
+          size={'100px'} 
+          background={'black'} 
         />
       
       </div>
