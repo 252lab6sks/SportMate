@@ -6,6 +6,7 @@ import Input from '@material-ui/core/Input';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import {auth} from './base';
+import logo from './assets/SportMate Transparent Icon.png';
 
 class App extends Component {
 
@@ -48,7 +49,10 @@ class App extends Component {
 	signInForm = () => {
 		return(
 			<div style={styles.mainDivStyle} className={"mainDiv"}>
+				<div style={{height: 80}}/>
 				<Paper style={styles.paperStyle} className={"paper"}>
+
+					<img src={logo} alt={null} style={{width: 250, height: 250}}/>
 
 					<FormControl style={styles.emailInputStyle} classname={"formStyle"} margin="normal" required fullWidth>
 						<InputLabel htmlFor="email"> Email Address </InputLabel>
@@ -101,7 +105,7 @@ class App extends Component {
 const styles = {
 
 	mainDivStyle: {
-		backgroundColor: "#ffffff",
+		backgroundColor: "#fefefe",
 	},
 
 	paperStyle: {
@@ -119,11 +123,13 @@ const styles = {
 
 	loginButtonStyle: {
 		marginTop: 15,
+		backgroundColor: "#7D19E5",
 	},
 
 	singUpButtonStyle: {
 		marginTop: 10,
-		marginBottom: 16
+		marginBottom: 16,
+		backgroundColor: "#7D19E5",
 	}
 };
 
