@@ -50,7 +50,7 @@ class App extends Component {
 			<div style={styles.mainDivStyle} className={"mainDiv"}>
 				<Paper style={styles.paperStyle} className={"paper"}>
 
-					<FormControl style={styles.formStyle} classname={"formStyle"} margin="normal" required fullWidth>
+					<FormControl style={styles.emailInputStyle} classname={"formStyle"} margin="normal" required fullWidth>
 						<InputLabel htmlFor="email"> Email Address </InputLabel>
 						<Input id="email" name="email" autoComplete="email" autoFocus
 						       onChange={event => {
@@ -58,7 +58,7 @@ class App extends Component {
 						       }}/>
 					</FormControl>
 
-					<FormControl style={styles.formStyle} margin="normal" required fullWidth>
+					<FormControl style={styles.passInputStyle} margin="normal" required fullWidth>
 						<InputLabel htmlFor="password"> Password </InputLabel>
 						<Input name="password" type="password" id="password" autoComplete="current-password"
 						       onChange={event => {
@@ -69,7 +69,7 @@ class App extends Component {
 					<Button style={styles.loginButtonStyle} variant="contained" color="primary"
 					        onClick={() => this.signIn(this.state.email, this.state.password)}> Log in </Button>
 
-					<Button style={styles.buttonStyle} variant="contained" color="primary"
+					<Button style={styles.singUpButtonStyle} variant="contained" color="primary"
 					        onClick={() => this.createUser(this.state.email, this.state.password)}> Sign up </Button>
 				</Paper>
 			</div>
@@ -108,12 +108,22 @@ const styles = {
 		width: 500
 	},
 
-	formStyle: {
+	emailInputStyle: {
+		marginTop: 40,
+		width: 420,
+	},
+
+	passInputStyle: {
 		width: 420,
 	},
 
 	loginButtonStyle: {
-		marginTop: 20,
+		marginTop: 15,
+	},
+
+	singUpButtonStyle: {
+		marginTop: 10,
+		marginBottom: 16
 	}
 };
 
