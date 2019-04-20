@@ -71,7 +71,8 @@ class App extends Component {
                     <Button fullWidth variant="contained" color="primary"
                             onClick={() => this.signIn(this.state.email, this.state.password)}> Log in </Button>
                     <div className="buttonSeparator"/>
-                   <textarea>heyy</textarea>
+                    <Button fullWidth variant="contained" color="primary"
+                            onClick={() => this.createUser(this.state.email, this.state.password)}> Sign up </Button>
                 </Paper>
             </div>
         );
