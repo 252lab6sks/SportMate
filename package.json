@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "firebase": "^5.10.0",
+    "firebase-admin": "^7.3.0",
     "firebase-functions": "^2.3.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -15,7 +16,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build && firebase serve",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "react-scripts build && firebase deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -25,5 +27,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "eslint-plugin-promise": "^4.1.1"
+  }
 }
