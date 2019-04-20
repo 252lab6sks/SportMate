@@ -3,5 +3,12 @@
 	flex-direction: column;
 	align-items: center;
 	margin: auto;
-	margin-top: 20vh;
+}
+
+.mainDiv {
+	height: 100vh;
+}
+
+.empty {
+	height: 12vh;
 }
