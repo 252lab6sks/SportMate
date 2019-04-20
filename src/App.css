@@ -2,12 +2,6 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 4vh;
-	margin-top: 30vh;
-	margin-left: 60vh;
-	margin-right: 60vh;
-}
-
-.buttonSeparator {
-	margin-top: 4vh;
+	margin: auto;
+	margin-top: 20vh;
 }
