@@ -17,7 +17,9 @@ import Grid from '@material-ui/core/Grid';
 class Dashboard extends Component {
 
 	state = {
-		
+		email: '',
+		password: '',
+		uid: '',
 	};
 
 	render() {
@@ -38,7 +40,14 @@ class Dashboard extends Component {
                         </Grid> 
                           
                            <Grid item>
-                            <Button color="inherit">Logout</Button>
+                            <Button color="inherit" onClick={() => {
+                            	localStorage.setItem('loggedIn', 'false');
+	                            this.setState({
+		                            email: '',
+		                            uid: ''
+	                            });
+	                            this.props.SignInHandler(this.state);
+                            }}>Logout</Button>
                            </Grid>
                            
 	                   </Grid>
