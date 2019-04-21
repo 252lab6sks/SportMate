@@ -18,25 +18,20 @@ class Dashboard extends Component {
 		
 	};
 
-
 	render() {
 		return(
-			
-				
-                    <div >
-                        <AppBar position="static">
-                            <Toolbar>
-                                <div className={styles.bar}>
-                                <Typography variant="h6" color="inherit" className={styles.grow}>
-                                    Dashboard
-                                </Typography>
-                                <Button color="inherit">Logout</Button>
-                                </div>
-                            </Toolbar>
-                        </AppBar>
-				    </div>
-                
-			
+	        <div >
+	            <AppBar position="static">
+	                <Toolbar>
+	                    <div className={styles.bar}>
+	                    <Typography variant="h6" color="inherit" className={styles.grow}>
+	                        Dashboard
+	                    </Typography>
+	                    <Button color="inherit">Logout</Button>
+	                    </div>
+	                </Toolbar>
+	            </AppBar>
+		    </div>
 		);
 	}
 }
