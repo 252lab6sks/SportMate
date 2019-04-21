@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import {auth} from './base';
 import logo from './assets/SportMate Transparent Icon.png';
 import axios from 'axios'
+import Dashboard from './Dashboard'
 
 class App extends Component {
 
@@ -83,11 +84,7 @@ class App extends Component {
 
 	dashboard = () => {
 		return(
-			<div>
-				<Paper>
-					<h1>Hey</h1>
-				</Paper>
-			</div>
+			<Dashboard/>
 		);
 	};
 
