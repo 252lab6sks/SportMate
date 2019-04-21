@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import {auth} from './base';
 import logo from './assets/SportMate Transparent Icon.png';
+import axios from 'axios'
 
 class App extends Component {
 
@@ -17,7 +18,8 @@ class App extends Component {
 		loggedIn: false
 	};
 
-	createUser = (email, password) => {
+	createUser = async(email, password) => {
+		
 		auth.createUserWithEmailAndPassword(email, password)
 			.then((response) => {
 				console.log(response);
@@ -28,8 +30,7 @@ class App extends Component {
 			})
 			.catch(error => {
 				console.log(error)
-			})
-		;
+			});
 	};
 
 	signIn = (email, password) => {
