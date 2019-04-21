@@ -6,13 +6,19 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 
 class Dashboard extends Component {
 
 	state = {
-		
+        value: 0,
 	};
+
+    handleChange = (event, value) => {
+    this.setState({ value });
+    };
 
 	render() {
 		return(
@@ -41,7 +47,12 @@ class Dashboard extends Component {
 
                 <div style = {styles.card}>
                     <Paper rounded elevation2>
-                        <div>Hey</div>
+                        <AppBar position="static">
+                            <Tabs variant="fullWidth" value={this.state.value} onChange={this.handleChange} style={{ background: "#7D19E5" }}>
+                                <Tab label="You created" />
+                                <Tab label="You joined" />
+                            </Tabs>
+                        </AppBar>
                     </Paper>
                 </div>
 
@@ -61,10 +72,10 @@ class Dashboard extends Component {
 const styles = {
 
  card:{
-    marginTop: 10,
-    marginBottom:10,
-    marginLeft: 5,
-    marginRight: 5,
+    marginTop: 20, 
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: 1200,
  },   
  
  bar:{
