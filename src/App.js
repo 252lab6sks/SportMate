@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import Paper from '@material-ui/core/Paper';
 import SignInForm from './SignInForm';
+import Dashboard from './Dashboard';
 
 class App extends Component {
 
@@ -16,16 +17,6 @@ class App extends Component {
 		email: '',
 		uid: '',
 		loggedIn: false,
-	};
-
-	dashboard = () => {
-		return(
-			<div>
-				<Paper>
-					<h1>Hey</h1>
-				</Paper>
-			</div>
-		);
 	};
 
 	SignInHandler (status) {
@@ -45,7 +36,7 @@ class App extends Component {
 		}
 		else
 		{
-			return this.dashboard();
+			return <Dashboard/>;
 		}
 	}
 }

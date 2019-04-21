@@ -36,6 +36,7 @@ class SignInForm extends React.Component {
 	};
 
 	signIn = (email, password) => {
+
 		auth.signInWithEmailAndPassword(email, password)
 			.then((response) => {
 
