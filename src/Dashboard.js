@@ -117,7 +117,7 @@ const styles = {
 		marginTop: 20,
 		marginLeft: 'auto',
 		marginRight: 'auto',
-		width: 1200,
+		width: 900,
 	},
 
 	bar: {
