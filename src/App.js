@@ -1,17 +1,8 @@
 import React, {Component} from 'react';
-import './App.css';
-import Paper from '@material-ui/core/Paper';
 import SignInForm from './SignInForm';
 import Dashboard from './Dashboard';
 
 class App extends Component {
-
-	constructor(props) {
-		super(props);
-
-		//binding child handler
-		this.SignInHandler = this.SignInHandler.bind(this);
-	}
 
 	state = {
 		email: '',
@@ -19,6 +10,7 @@ class App extends Component {
 		loggedIn: false,
 	};
 
+	//binding to this when sending to child because setting state of parent
 	SignInHandler (status) {
 		this.setState(
 			{
@@ -32,7 +24,7 @@ class App extends Component {
 	render() {
 		if(!this.state.loggedIn)
 		{
-			return <SignInForm SignInHandler={this.SignInHandler}/>;
+			return <SignInForm SignInHandler={this.SignInHandler.bind(this)}/>;
 		}
 		else
 		{

@@ -28,7 +28,7 @@ class SignInForm extends React.Component {
 					uid: response.user.uid
 				});
 
-				return this.props.SignInHandler(this.state);
+				this.props.SignInHandler(this.state);
 			})
 			.catch(error => {
 				console.log(error)
@@ -47,7 +47,7 @@ class SignInForm extends React.Component {
 					uid: response.user.uid
 				});
 
-				return this.props.SignInHandler(this.state);
+				this.props.SignInHandler(this.state);
 			})
 			.catch(error => {
 				console.log(error)
