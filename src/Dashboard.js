@@ -14,7 +14,6 @@ class Dashboard extends Component {
 
 	state = {
 		email: '',
-		password: '',
 		uid: '',
 		value: 0,
 	};

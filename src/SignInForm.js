@@ -8,7 +8,7 @@ import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import { auth } from "./base";
 
-class SignInForm extends React.Component {
+class SignInForm extends Component {
 
 	state = {
 		email: '',
@@ -66,7 +66,7 @@ class SignInForm extends React.Component {
 				<div style={{height: 80}}/>
 				<Paper style={styles.paperStyle} className={"paper"}>
 
-					<img src={logo} alt={null} style={{width: 250, height: 250}}/>
+					<img src={logo} alt={""} style={{width: 250, height: 250}}/>
 
 					<FormControl style={styles.emailInputStyle} className={"formStyle"} margin="normal" required
 					             fullWidth>
