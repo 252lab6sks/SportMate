@@ -38,14 +38,16 @@ class Dashboard extends Component {
 							</Grid>
 
 							<Grid item>
-								<Button color="inherit" onClick={() => {
-									localStorage.setItem('loggedIn', 'false');
-									this.setState({
-										email: '',
-										uid: ''
-									});
-									this.props.SignInHandler(this.state);
-								}}>Logout</Button>
+								<Button style={{color: "#7D19E5", backgroundColor: "#FCD704"}} color="inherit"
+								        onClick={() => {
+									        localStorage.setItem('loggedIn', 'false');
+									        this.setState({
+										        email: '',
+										        uid: ''
+									        });
+									        this.props.SignInHandler(this.state);
+								        }}>
+									Logout</Button>
 							</Grid>
 
 						</Grid>
@@ -55,6 +57,26 @@ class Dashboard extends Component {
 				<div style={styles.card}>
 					<Paper>
 						<AppBar position="static">
+							<div style={{backgroundColor: "#7D19E5"}}>
+								<Grid
+									justify="space-between"
+									alignItems="center"
+									container
+									spacing={24}>
+
+									<Grid item style={{margin: 10, marginLeft: 20}}>
+										<Typography variant="h6" color="inherit" align="left">
+											Your Events
+										</Typography>
+									</Grid>
+
+									<Grid item style={{marginTop: "auto", marginBottom: "auto", marginRight: 20}}>
+										<Button style={{color: "#7D19E5", backgroundColor: "#FCD704"}} color="inherit"
+										        onClick={() => {
+										        }}>Add Event</Button>
+									</Grid>
+								</Grid>
+							</div>
 							<Tabs variant="fullWidth" value={this.state.value} onChange={this.handleChange}
 							      style={{background: "#7D19E5"}}>
 								<Tab label="You created"/>
@@ -66,7 +88,22 @@ class Dashboard extends Component {
 
 				<div style={styles.card}>
 					<Paper>
-						<div>Hey</div>
+						<AppBar position="static">
+							<div style={{backgroundColor: "#7D19E5"}}>
+								<Grid
+									justify="space-between"
+									alignItems="center"
+									container
+									spacing={24}>
+
+									<Grid item style={{margin: 10, marginLeft: 20}}>
+										<Typography variant="h6" color="inherit" align="left">
+											All Events
+										</Typography>
+									</Grid>
+								</Grid>
+							</div>
+						</AppBar>
 					</Paper>
 				</div>
 			</div>
@@ -99,6 +136,8 @@ const styles = {
 		marginLeft: -12,
 		marginRight: 20,
 	},
+
+
 };
 
 export default Dashboard;
