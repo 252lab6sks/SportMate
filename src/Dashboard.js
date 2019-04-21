@@ -1,12 +1,6 @@
 import React, {Component} from 'react';
 import './Dashboard.css';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
 import Paper from '@material-ui/core/Paper';
-import {auth} from './base';
-import logo from './assets/SportMate Transparent Icon.png';
-import axios from 'axios'
 import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -44,12 +38,35 @@ class Dashboard extends Component {
 	                   </Grid>
 	                </Toolbar>
 	            </AppBar>
+
+                <div style = {styles.card}>
+                    <Paper rounded elevation2>
+                        <div>Hey</div>
+                    </Paper>
+                </div>
+
+                <div style = {styles.card}>
+                    <Paper rounded elevation2>
+                        <div>Hey</div>
+                    </Paper>
+                </div>
+
+
+
 		    </div>
 		);
 	}
 }
 
 const styles = {
+
+ card:{
+    marginTop: 10,
+    marginBottom:10,
+    marginLeft: 5,
+    marginRight: 5,
+ },   
+ 
  bar:{
      backgroundColor: "#7D19E5",
  },
