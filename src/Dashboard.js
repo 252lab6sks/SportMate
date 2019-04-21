@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.css';
+import './Dashboard.css';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
@@ -11,6 +11,8 @@ import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
+import Grid from '@material-ui/core/Grid';
+
 
 class Dashboard extends Component {
 
@@ -21,14 +23,25 @@ class Dashboard extends Component {
 	render() {
 		return(
 	        <div >
-	            <AppBar position="static">
+	            <AppBar position="static" style={{ background: "#7D19E5" }}>
 	                <Toolbar>
-	                    <div className={styles.bar}>
-	                    <Typography variant="h6" color="inherit" className={styles.grow}>
-	                        Dashboard
-	                    </Typography>
-	                    <Button color="inherit">Logout</Button>
-	                    </div>
+                        <Grid
+                            justify="space-between" 
+                            container 
+                            spacing={24}
+                        >
+
+                        <Grid item>
+                            <Typography variant="h6" color="inherit" align="left">
+                                SportMate
+                            </Typography>
+                        </Grid> 
+                          
+                           <Grid item>
+                            <Button color="inherit">Logout</Button>
+                           </Grid>
+                           
+	                   </Grid>
 	                </Toolbar>
 	            </AppBar>
 		    </div>
@@ -37,9 +50,8 @@ class Dashboard extends Component {
 }
 
 const styles = {
- bar: {
-     flex: 1,
-     flexDirection: 'row',
+ bar:{
+     backgroundColor: "#7D19E5",
  },
  root: {
     flex: 3,
