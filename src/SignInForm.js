@@ -54,6 +54,12 @@ class SignInForm extends React.Component {
 			});
 	};
 
+	enterPress(event) {
+		if(event.keyCode === 13) {
+			this.signIn(this.state.email, this.state.password);
+		}
+	};
+
 	render() {
 		return (
 			<div style={styles.mainDivStyle} className={"mainDiv"}>
@@ -76,7 +82,8 @@ class SignInForm extends React.Component {
 						<Input name="password" type="password" id="password" autoComplete="current-password"
 						       onChange={event => {
 							       this.setState({password: event.target.value});
-						       }}/>
+						       }}
+						       onKeyDown={event => this.enterPress(event)}/>
 					</FormControl>
 
 					<Button style={styles.loginButtonStyle} variant="contained" color="primary"
