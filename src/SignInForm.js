@@ -24,10 +24,10 @@ class SignInForm extends React.Component {
 				console.log(response);
 
 				this.setState({
-					loggedIn: true,
+					email: response.user.email,
 					uid: response.user.uid
 				});
-
+				localStorage.setItem('loggedIn', 'true');
 				this.props.SignInHandler(this.state);
 			})
 			.catch(error => {
@@ -43,10 +43,10 @@ class SignInForm extends React.Component {
 				console.log(response);
 
 				this.setState({
-					loggedIn: true,
+					email: response.user.email,
 					uid: response.user.uid
 				});
-
+				localStorage.setItem('loggedIn', 'true');
 				this.props.SignInHandler(this.state);
 			})
 			.catch(error => {

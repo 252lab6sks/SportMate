@@ -7,28 +7,25 @@ class App extends Component {
 	state = {
 		email: '',
 		uid: '',
-		loggedIn: false,
 	};
 
 	//binding to this when sending to child because setting state of parent
-	SignInHandler (status) {
+	SignInHandler(status) {
 		this.setState(
 			{
 				email: status.email,
 				uid: status.uid,
-				loggedIn: status.loggedIn,
 			}
 		);
 	};
 
 	render() {
-		if(!this.state.loggedIn)
-		{
+		var loggedIn = localStorage.getItem('loggedIn');
+		console.log('login: ' + loggedIn);
+		if (loggedIn === 'false') {
 			return <SignInForm SignInHandler={this.SignInHandler.bind(this)}/>;
-		}
-		else
-		{
-			return <Dashboard/>;
+		} else {
+			return <Dashboard SignInHandler={this.SignInHandler.bind(this)}/>;
 		}
 	}
 }

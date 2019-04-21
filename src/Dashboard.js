@@ -13,6 +13,9 @@ import Tab from '@material-ui/core/Tab';
 class Dashboard extends Component {
 
 	state = {
+		email: '',
+		password: '',
+		uid: '',
 		value: 0,
 	};
 
@@ -37,7 +40,14 @@ class Dashboard extends Component {
 							</Grid>
 
 							<Grid item>
-								<Button color="inherit">Logout</Button>
+								<Button color="inherit" onClick={() => {
+									localStorage.setItem('loggedIn', 'false');
+									this.setState({
+										email: '',
+										uid: ''
+									});
+									this.props.SignInHandler(this.state);
+								}}>Logout</Button>
 							</Grid>
 
 						</Grid>
