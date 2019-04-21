@@ -55,7 +55,7 @@ class Dashboard extends Component {
 				</AppBar>
 
 				<div style={styles.card}>
-					<Paper rounded elevation2>
+					<Paper>
 						<AppBar position="static">
 							<Tabs variant="fullWidth" value={this.state.value} onChange={this.handleChange}
 							      style={{background: "#7D19E5"}}>
@@ -67,7 +67,7 @@ class Dashboard extends Component {
 				</div>
 
 				<div style={styles.card}>
-					<Paper rounded elevation2>
+					<Paper>
 						<div>Hey</div>
 					</Paper>
 				</div>
