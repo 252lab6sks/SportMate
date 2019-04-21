@@ -85,7 +85,7 @@ class SignInForm extends React.Component {
 					<Button style={styles.loginButtonStyle} variant="contained" color="primary"
 					        onClick={() => this.signIn(this.state.email, this.state.password)}> Log in </Button>
 
-					<Button style={styles.singUpButtonStyle} variant="contained" color="primary"
+					<Button style={styles.signUpButtonStyle} variant="contained" color="primary"
 					        onClick={() => this.createUser(this.state.email, this.state.password)}> Sign up </Button>
 				</Paper>
 			</div>
@@ -117,7 +117,7 @@ const styles = {
 		backgroundColor: "#7D19E5",
 	},
 
-	singUpButtonStyle: {
+	signUpButtonStyle: {
 		marginTop: 10,
 		marginBottom: 16,
 		backgroundColor: "#7D19E5",
