@@ -47,6 +47,9 @@ class SignInForm extends React.Component {
 					uid: response.user.uid
 				});
 
+				localStorage.setItem('loggedIn', 'true');
+				console.log("here");
+
 				this.props.SignInHandler(this.state);
 			})
 			.catch(error => {
