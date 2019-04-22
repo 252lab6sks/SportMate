@@ -12,7 +12,9 @@ import Modal from 'react-responsive-modal';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
-import TableView from './TableView'
+import TableView from './TableView';
+import firebase from 'firebase';
+import { db } from './base';
 
 class Dashboard extends Component {
 	
@@ -49,7 +51,18 @@ class Dashboard extends Component {
 	};
 
 	eventSubmit() {
-		console.log(this.state);
+		var ref = db.ref("events/").push();
+		var eventID = ref.key;
+
+		db.ref("events/" + eventID + "/").set({
+			sport: this.state.sport,
+			location: this.state.location,
+			capacity: this.state.capacity,
+			time: this.state.time,
+			host: this.state.host,
+			people: { "abcd": this.state.email, }
+			
+		}).then((data) => console.log("Added to db")).catch((error) => console.log(error));
 	};
 
 	render() {
