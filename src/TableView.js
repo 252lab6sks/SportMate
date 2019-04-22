@@ -6,6 +6,10 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { Button, Typography } from "@material-ui/core";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import Grid from "@material-ui/core/Grid";
 
 const rows = [
 	createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
@@ -25,53 +29,93 @@ class TableView extends Component {
 	state = {};
 
 	getTableComponent(row) {
-		return(
-			<TableRow
-				key={row.id}
-				style={{ backgroundColor: "white", height: 35 }}>
+		return (
+			<ExpansionPanel style={{ width: 900 }}>
+				<ExpansionPanelSummary>
+					<Grid
+						justify="space-between"
+						alignItems="left"
+						container
+						spacing={24}>
 
-				<TableCell component="th" scope="row">{row.name}</TableCell>
-				<TableCell align="right">{row.calories}</TableCell>
-				<TableCell align="right">{row.fat}</TableCell>
-				<TableCell align="right">{row.carbs}</TableCell>
-				<TableCell align="right">{row.protein}</TableCell>
-				<TableCell>
-					<Button>
-						Details
-					</Button>
-				</TableCell>
-			</TableRow>
+						<Grid item style={{ margin: 10, marginLeft: 20 }}>
+							<Typography align="left">
+								Sport
+							</Typography>
+						</Grid>
+						<Grid item style={{ margin: 10, marginLeft: 20 }}>
+							<Typography align="left">
+								Location
+							</Typography>
+						</Grid>
+						<Grid item style={{ margin: 10, marginLeft: 20 }}>
+							<Typography align="left">
+								Capacity
+							</Typography>
+						</Grid>
+						<Grid item style={{ margin: 10, marginLeft: 20 }}>
+							<Typography align="left">
+								Time
+							</Typography>
+						</Grid>
+						<Grid item style={{ margin: 10, marginLeft: 20 }}>
+							<Typography align="left">
+								Host
+							</Typography>
+						</Grid>
+					</Grid>
+				</ExpansionPanelSummary>
+				<ExpansionPanelDetails>
+					<Typography>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+						malesuada lacus ex, sit amet blandit leo lobortis eget.
+          			</Typography>
+				</ExpansionPanelDetails>
+			</ExpansionPanel>
 		);
 	}
 
 	render() {
 		return (
-			<Table className={styles.table}>
-				<TableHead>
-					<TableRow style={{ backgroundColor: "black", height: 35 }}>
-						<TableCell style={{ color: "white", fontWeight: "bold", fontSize: 20 }}>
-							Sport
-            			</TableCell>
-						<TableCell style={{ color: "white", fontWeight: "bold", fontSize: 20 }}>
-							Location
-            			</TableCell>
-						<TableCell style={{ color: "white", fontWeight: "bold", fontSize: 20 }}>
-							Capacity
-            			</TableCell>
-						<TableCell style={{ color: "white", fontWeight: "bold", fontSize: 20 }}>
-							Time
-            			</TableCell>
-						<TableCell style={{ color: "white", fontWeight: "bold", fontSize: 20 }}>
-							Host
-            			</TableCell>
-						<TableCell style={{ color: "white", fontWeight: "bold", fontSize: 20 }}/>
-					</TableRow>
-				</TableHead>
-				
-				<TableBody>
-					{rows.map(row => this.getTableComponent(row))}
-				</TableBody>
-			</Table>
+			<div>
+				<ExpansionPanel style={{ width: 900, backgroundColor: "black" }}>
+					<ExpansionPanelSummary>
+						<Grid
+							justify="space-between"
+							alignItems="left"
+							container
+							spacing={24}>
+
+							<Grid item style={{ margin: 10, marginLeft: 20 }}>
+								<Typography style={{ color: "white", fontWeight: "bold", fontSize: 20 }} align="left">
+									Sport
+								</Typography>
+							</Grid>
+							<Grid item style={{ margin: 10, marginLeft: 20 }}>
+								<Typography style={{ color: "white", fontWeight: "bold", fontSize: 20 }} align="left">
+									Location
+								</Typography>
+							</Grid>
+							<Grid item style={{ margin: 10, marginLeft: 20 }}>
+								<Typography style={{ color: "white", fontWeight: "bold", fontSize: 20 }} align="left">
+									Capacity
+								</Typography>
+							</Grid>
+							<Grid item style={{ margin: 10, marginLeft: 20 }}>
+								<Typography style={{ color: "white", fontWeight: "bold", fontSize: 20 }} align="left">
+									Time
+								</Typography>
+							</Grid>
+							<Grid item style={{ margin: 10, marginLeft: 20 }}>
+								<Typography style={{ color: "white", fontWeight: "bold", fontSize: 20 }} align="left">
+									Host
+								</Typography>
+							</Grid>
+						</Grid>
+					</ExpansionPanelSummary>
+				</ExpansionPanel>
+				{rows.map(row => this.getTableComponent(row))}
+			</div>
 		);
 	}
 }

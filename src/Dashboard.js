@@ -16,7 +16,7 @@ import TableView from './TableView';
 import { db } from './base';
 
 class Dashboard extends Component {
-	
+
 	state = {
 		email: '',
 		uid: '',
@@ -38,13 +38,13 @@ class Dashboard extends Component {
 	}
 
 	handleChange = (event, value) => {
-		this.setState({value: value});
+		this.setState({ value: value });
 	};
 
 	addEventOpen() {
-		this.setState({addEventState: true});
+		this.setState({ addEventState: true });
 	};
-	
+
 	addEventClose() {
 		this.setState({ addEventState: false });
 	};
@@ -52,7 +52,7 @@ class Dashboard extends Component {
 	eventSubmit() {
 		var ref = db.ref("events/").push();
 		var eventID = ref.key;
-  
+
 
 		db.ref("events/" + eventID + "/").set({
 			sport: this.state.sport,
@@ -60,14 +60,14 @@ class Dashboard extends Component {
 			capacity: this.state.capacity,
 			time: this.state.time,
 			people: { "1": `${this.state.email}` }
-			
+
 		}).then((data) => console.log("Added to db")).catch((error) => console.log(error));
 	};
 
 	render() {
 		return (
 			<div>
-				<AppBar position="static" style={{background: "#7D19E5"}}>
+				<AppBar position="static" style={{ background: "#7D19E5" }}>
 					<Toolbar>
 						<Grid
 							justify="space-between"
@@ -81,15 +81,15 @@ class Dashboard extends Component {
 							</Grid>
 
 							<Grid item>
-								<Button style={{color: "#7D19E5", backgroundColor: "#FCD704"}} color="inherit"
-								        onClick={() => {
-									        localStorage.setItem('loggedIn', 'false');
-									        this.setState({
-										        email: '',
-										        uid: ''
-									        });
-									        this.props.SignInHandler(this.state);
-								        }}>
+								<Button style={{ color: "#7D19E5", backgroundColor: "#FCD704" }} color="inherit"
+									onClick={() => {
+										localStorage.setItem('loggedIn', 'false');
+										this.setState({
+											email: '',
+											uid: ''
+										});
+										this.props.SignInHandler(this.state);
+									}}>
 									Logout</Button>
 							</Grid>
 
@@ -98,58 +98,56 @@ class Dashboard extends Component {
 				</AppBar>
 
 				<div style={styles.card}>
-					<Paper>
-						<AppBar position="static">
-							<div style={{backgroundColor: "#7D19E5"}}>
-								<Grid
-									justify="space-between"
-									alignItems="center"
-									container
-									spacing={24}>
+					{/* <Paper> */}
+					<AppBar position="static">
+						<div style={{ backgroundColor: "#7D19E5" }}>
+							<Grid
+								justify="space-between"
+								alignItems="center"
+								container
+								spacing={24}>
 
-									<Grid item style={{margin: 10, marginLeft: 20}}>
-										<Typography variant="h6" color="inherit" align="left">
-											Your Events
+								<Grid item style={{ margin: 10, marginLeft: 20 }}>
+									<Typography variant="h6" color="inherit" align="left">
+										Your Events
 										</Typography>
-									</Grid>
-
-									<Grid item style={{marginTop: "auto", marginBottom: "auto", marginRight: 20}}>
-										<Button style={{color: "#7D19E5", backgroundColor: "#FCD704"}} color="inherit"
-											onClick={() => { this.addEventOpen()}}>Add Event</Button>
-									</Grid>
 								</Grid>
-							</div>
-							<Tabs variant="fullWidth" value={this.state.value} onChange={this.handleChange}
-							      style={{background: "#7D19E5"}}>
-								<Tab label="You created"/>
-								<Tab label="You joined"/>
-							</Tabs>
-						</AppBar>
-						{this.state.value === 0 && <TableView/>}
-						{this.state.value === 1 && <TableView/>}
-					</Paper>
+
+								<Grid item style={{ marginTop: "auto", marginBottom: "auto", marginRight: 20 }}>
+									<Button style={{ color: "#7D19E5", backgroundColor: "#FCD704" }} color="inherit"
+										onClick={() => { this.addEventOpen() }}>Add Event</Button>
+								</Grid>
+							</Grid>
+						</div>
+						<Tabs variant="fullWidth" value={this.state.value} onChange={this.handleChange}
+							style={{ background: "#7D19E5" }}>
+							<Tab label="You created" />
+							<Tab label="You joined" />
+						</Tabs>
+					</AppBar>
+					{this.state.value === 0 && <TableView />}
+					{this.state.value === 1 && <TableView />}
+					{/* </Paper> */}
 				</div>
 
 				<div style={styles.card}>
-					<Paper>
-						<AppBar position="static">
-							<div style={{backgroundColor: "#7D19E5"}}>
-								<Grid
-									justify="space-between"
-									alignItems="center"
-									container
-									spacing={24}>
+					<AppBar position="static">
+						<div style={{ backgroundColor: "#7D19E5" }}>
+							<Grid
+								justify="space-between"
+								alignItems="center"
+								container
+								spacing={24}>
 
-									<Grid item style={{margin: 10, marginLeft: 20}}>
-										<Typography variant="h6" color="inherit" align="left">
-											All Events
-										</Typography>
-									</Grid>
+								<Grid item style={{ margin: 10, marginLeft: 20 }}>
+									<Typography variant="h6" color="inherit" align="left">
+										All Events
+									</Typography>
 								</Grid>
-							</div>
-							<TableView/>
-						</AppBar>
-					</Paper>
+							</Grid>
+						</div>
+					</AppBar>
+					<TableView/>
 				</div>
 
 				<Modal open={this.state.addEventState} onClose={this.addEventClose.bind(this)}>
@@ -180,8 +178,8 @@ class Dashboard extends Component {
 							<InputLabel> Time </InputLabel>
 							<Input style={{ width: 300 }} onChange={event => {
 								this.setState({ time: event.target.value });
-						}}
-						/>
+							}}
+							/>
 						</FormControl>
 						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
 							<InputLabel> Host </InputLabel>
@@ -192,9 +190,9 @@ class Dashboard extends Component {
 						</FormControl>
 
 						<Button style={{ color: "#7D19E5", backgroundColor: "#FCD704", marginTop: 30, marginLeft: 20, marginRight: 20 }}
-								color="inherit"
-								onClick={() => {this.eventSubmit()}}>
-							Submit 
+							color="inherit"
+							onClick={() => { this.eventSubmit() }}>
+							Submit
 							</Button>
 					</div>
 				</Modal>
