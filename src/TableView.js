@@ -5,7 +5,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 
 const rows = [
 	createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
@@ -19,10 +19,30 @@ let id = 0;
 function createData(name, calories, fat, carbs, protein) {
 	id += 1;
 	return { id, name, calories, fat, carbs, protein };
-}
+};
 
 class TableView extends Component {
 	state = {};
+
+	getTableComponent(row) {
+		return(
+			<TableRow
+				key={row.id}
+				style={{ backgroundColor: "white", height: 35 }}>
+
+				<TableCell component="th" scope="row">{row.name}</TableCell>
+				<TableCell align="right">{row.calories}</TableCell>
+				<TableCell align="right">{row.fat}</TableCell>
+				<TableCell align="right">{row.carbs}</TableCell>
+				<TableCell align="right">{row.protein}</TableCell>
+				<TableCell>
+					<Button>
+						Details
+					</Button>
+				</TableCell>
+			</TableRow>
+		);
+	}
 
 	render() {
 		return (
@@ -32,40 +52,24 @@ class TableView extends Component {
 						<TableCell style={{ color: "white", fontWeight: "bold", fontSize: 20 }}>
 							Sport
             			</TableCell>
-						<TableCell style={{ color: "white", fontWeight: "bold", fontSize: 20 }} align="right">
+						<TableCell style={{ color: "white", fontWeight: "bold", fontSize: 20 }}>
 							Location
             			</TableCell>
-						<TableCell style={{ color: "white", fontWeight: "bold", fontSize: 20 }} align="right">
+						<TableCell style={{ color: "white", fontWeight: "bold", fontSize: 20 }}>
 							Capacity
             			</TableCell>
-						<TableCell style={{ color: "white", fontWeight: "bold", fontSize: 20 }} align="right">
+						<TableCell style={{ color: "white", fontWeight: "bold", fontSize: 20 }}>
 							Time
             			</TableCell>
-						<TableCell style={{ color: "white", fontWeight: "bold", fontSize: 20 }} align="right">
+						<TableCell style={{ color: "white", fontWeight: "bold", fontSize: 20 }}>
 							Host
             			</TableCell>
-						<TableCell style={{ color: "white", fontWeight: "bold", fontSize: 20 }} align="right"/>
+						<TableCell style={{ color: "white", fontWeight: "bold", fontSize: 20 }}/>
 					</TableRow>
 				</TableHead>
 				
 				<TableBody>
-					{rows.map(row => (
-						<TableRow
-							key={row.id}
-							style={{ backgroundColor: "white", height: 35 }}>
-
-							<TableCell component="th" scope="row">{row.name}</TableCell>
-							<TableCell align="right">{row.calories}</TableCell>
-							<TableCell align="right">{row.fat}</TableCell>
-							<TableCell align="right">{row.carbs}</TableCell>
-							<TableCell align="right">{row.protein}</TableCell>
-							<TableCell align="right">
-								<Button>
-									Details
-								</Button>
-							</TableCell>
-						</TableRow>
-					))}
+					{rows.map(row => this.getTableComponent(row))}
 				</TableBody>
 			</Table>
 		);
