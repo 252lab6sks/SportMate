@@ -13,8 +13,9 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import TableView from './TableView';
-import {db} from './base';
-
+import firebase from 'firebase';
+import AddEventModal from './AddEventModal.js'
+import { db } from './base';
 
 class Dashboard extends Component {
 
@@ -52,15 +53,15 @@ class Dashboard extends Component {
 		this.setState({value: value});
 	};
 
-	addEventOpen() {
+	addEventOpen = () => {
 		this.setState({addEventState: true});
 	};
-
-	addEventClose() {
-		this.setState({addEventState: false});
+	
+	addEventClose = () => {
+		this.setState({ addEventState: false });
 	};
 
-	eventSubmit() {
+	eventSubmit = () => {
 		var ref = db.ref("events/").push();
 		var eventID = ref.key;
 
@@ -69,9 +70,13 @@ class Dashboard extends Component {
 			location: this.state.location,
 			capacity: this.state.capacity,
 			time: this.state.time,
-			people: {"1": `${this.state.email}`}
-
-		}).then((data) => console.log("Added to db")).catch((error) => console.log(error));
+			people: { "1": `${this.state.email}` },
+      host: this.state.email
+			
+		}).then((data) => {
+      console.log("Added to db")
+      this.addEventClose()
+      }).catch((error) => console.log(error));
 	};
 
 	render() {
@@ -164,60 +169,7 @@ class Dashboard extends Component {
 					</Paper>
 				</div>
 
-				<Modal open={this.state.addEventState} onClose={this.addEventClose.bind(this)}>
-					<h2>Add Event</h2>
-					<div style={{display: "flex", flexDirection: "column"}}>
-						<FormControl style={{marginLeft: 20, marginRight: 20, marginTop: 5}}>
-							<InputLabel> Sport </InputLabel>
-							<Input style={{width: 300}} onChange={event => {
-								this.setState({sport: event.target.value});
-							}}
-							/>
-						</FormControl>
-						<FormControl style={{marginLeft: 20, marginRight: 20, marginTop: 15}}>
-							<InputLabel> Location </InputLabel>
-							<Input style={{width: 300}} onChange={event => {
-								this.setState({location: event.target.value});
-							}}
-							/>
-						</FormControl>
-						<FormControl style={{marginLeft: 20, marginRight: 20, marginTop: 15}}>
-							<InputLabel> Capacity </InputLabel>
-							<Input style={{width: 300}} onChange={event => {
-								this.setState({capacity: event.target.value});
-							}}
-							/>
-						</FormControl>
-						<FormControl style={{marginLeft: 20, marginRight: 20, marginTop: 15}}>
-							<InputLabel> Time </InputLabel>
-							<Input style={{width: 300}} onChange={event => {
-								this.setState({time: event.target.value});
-							}}
-							/>
-						</FormControl>
-						<FormControl style={{marginLeft: 20, marginRight: 20, marginTop: 15}}>
-							<InputLabel> Host </InputLabel>
-							<Input style={{width: 300}} onChange={event => {
-								this.setState({host: event.target.value});
-							}}
-							/>
-						</FormControl>
-
-						<Button style={{
-							color: "#7D19E5",
-							backgroundColor: "#FCD704",
-							marginTop: 30,
-							marginLeft: 20,
-							marginRight: 20
-						}}
-						        color="inherit"
-						        onClick={() => {
-							        this.eventSubmit()
-						        }}>
-							Submit
-						</Button>
-					</div>
-				</Modal>
+			<AddEventModal details = {this.state} addEventOpen = {this.addEventOpen} addEventClose = {this.addEventClose}  eventSubmit = {this.eventSubmit}/>
 			</div>
 		);
 	}
