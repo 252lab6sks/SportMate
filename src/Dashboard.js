@@ -23,7 +23,7 @@ class Dashboard extends Component {
 	};
 
 	handleChange = (event, value) => {
-		
+		this.setState({value: value});
 	};
 
 	addEventOpen() {
@@ -121,11 +121,39 @@ class Dashboard extends Component {
 
 				<Modal open={this.state.addEventState} onClose={this.addEventClose.bind(this)} center>
 					<h2>Add Event</h2>
-					<FormControl style={{width: 500}} margin="normal" required fullWidth>
-						<InputLabel htmlFor="email"> Sport </InputLabel>
-						<Input 	onChange={event => {
-									this.setState({ email: event.target.value });
-								}} 
+					<FormControl style={{ width: 500 }} margin="normal" required fullWidth>
+						<InputLabel> Sport </InputLabel>
+						<Input onChange={event => {
+							this.setState({});
+						}}
+						/>
+					</FormControl>
+					<FormControl style={{ width: 500 }} margin="normal" required fullWidth>
+						<InputLabel> Location </InputLabel>
+						<Input onChange={event => {
+							this.setState({});
+						}}
+						/>
+					</FormControl>
+					<FormControl style={{ width: 500 }} margin="normal" required fullWidth>
+						<InputLabel> Capacity </InputLabel>
+						<Input onChange={event => {
+							this.setState({});
+						}}
+						/>
+					</FormControl>
+					<FormControl style={{ width: 500 }} margin="normal" required fullWidth>
+						<InputLabel> Time </InputLabel>
+						<Input onChange={event => {
+							this.setState({});
+						}}
+						/>
+					</FormControl>
+					<FormControl style={{ width: 500 }} margin="normal" required fullWidth>
+						<InputLabel> Host </InputLabel>
+						<Input onChange={event => {
+							this.setState({});
+						}}
 						/>
 					</FormControl>
 				</Modal>
