@@ -13,7 +13,6 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import TableView from './TableView';
-import firebase from 'firebase';
 import { db } from './base';
 
 class Dashboard extends Component {
