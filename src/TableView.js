@@ -53,7 +53,23 @@ class TableView extends Component {
 				console.log(rows)
 
 			} else if (this.props.type == 'joined') {
-				//TODO: make this work
+				Object.keys(this.props.events).forEach((key, index) => {
+					Object.keys(this.props.events[key].people).forEach((key_child, index_child) => {
+						if (this.props.events[key].people[key_child] == this.props.email &&
+							this.props.events[key].host != this.props.email) {
+							let row = createData(
+								this.props.events[key].sport,
+								this.props.events[key].location,
+								this.props.events[key].capacity,
+								this.props.events[key].time,
+								this.props.events[key].host,
+							);
+							rows.push(row);
+						}
+						}
+					);
+					}
+				);
 
 			} else {
 				Object.keys(this.props.events).forEach((key, index) => {

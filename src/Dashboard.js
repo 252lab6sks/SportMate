@@ -8,14 +8,9 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Grid from "@material-ui/core/Grid";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Modal from 'react-responsive-modal';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
 import TableView from './TableView';
-import firebase from 'firebase';
 import AddEventModal from './AddEventModal.js'
-import { db } from './base';
+import {db} from './base';
 
 class Dashboard extends Component {
 
@@ -56,9 +51,9 @@ class Dashboard extends Component {
 	addEventOpen = () => {
 		this.setState({addEventState: true});
 	};
-	
+
 	addEventClose = () => {
-		this.setState({ addEventState: false });
+		this.setState({addEventState: false});
 	};
 
 	eventSubmit = () => {
@@ -70,13 +65,13 @@ class Dashboard extends Component {
 			location: this.state.location,
 			capacity: this.state.capacity,
 			time: this.state.time,
-			people: { "1": `${this.state.email}` },
-      host: this.state.email
-			
+			people: {"1": `${this.state.email}`},
+			host: this.state.email
+
 		}).then((data) => {
-      console.log("Added to db")
-      this.addEventClose()
-      }).catch((error) => console.log(error));
+			console.log("Added to db")
+			this.addEventClose()
+		}).catch((error) => console.log(error));
 	};
 
 	render() {
@@ -142,8 +137,10 @@ class Dashboard extends Component {
 								<Tab label="You joined"/>
 							</Tabs>
 						</AppBar>
-						{this.state.value === 0 && <TableView events={this.state.events} type ='created' email={this.state.email}/>}
-						{this.state.value === 1 && <TableView events={this.state.events} type = 'joined' email={this.state.email}/>}
+						{this.state.value === 0 &&
+						<TableView events={this.state.events} type='created' email={this.state.email}/>}
+						{this.state.value === 1 &&
+						<TableView events={this.state.events} type='joined' email={this.state.email}/>}
 					</Paper>
 				</div>
 
@@ -164,12 +161,13 @@ class Dashboard extends Component {
 									</Grid>
 								</Grid>
 							</div>
-							<TableView events={this.state.events} type = 'all' email={this.state.email}/>
+							<TableView events={this.state.events} type='all' email={this.state.email}/>
 						</AppBar>
 					</Paper>
 				</div>
 
-			<AddEventModal details = {this.state} addEventOpen = {this.addEventOpen} addEventClose = {this.addEventClose}  eventSubmit = {this.eventSubmit}/>
+				<AddEventModal details={this.state} addEventOpen={this.addEventOpen} addEventClose={this.addEventClose}
+				               eventSubmit={this.eventSubmit}/>
 			</div>
 		);
 	}
