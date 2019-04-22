@@ -12,9 +12,10 @@ import Modal from 'react-responsive-modal';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
+import TableView from './TableView'
 
 class Dashboard extends Component {
-
+	
 	state = {
 		email: '',
 		uid: '',
@@ -95,6 +96,8 @@ class Dashboard extends Component {
 								<Tab label="You joined"/>
 							</Tabs>
 						</AppBar>
+						{this.state.value === 0 && <TableView/>}
+						{this.state.value === 1 && <TableView/>}
 					</Paper>
 				</div>
 
@@ -115,6 +118,7 @@ class Dashboard extends Component {
 									</Grid>
 								</Grid>
 							</div>
+							<TableView/>
 						</AppBar>
 					</Paper>
 				</div>
@@ -178,6 +182,9 @@ class Dashboard extends Component {
 }
 
 const styles = {
+	table: {
+		minWidth: 700
+	},
 
 	card: {
 		marginTop: 20,
