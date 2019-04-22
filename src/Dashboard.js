@@ -8,6 +8,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Grid from "@material-ui/core/Grid";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import Modal from 'react-responsive-modal';
 
 class Dashboard extends Component {
 
@@ -15,10 +16,19 @@ class Dashboard extends Component {
 		email: '',
 		uid: '',
 		value: 0,
+		addEventState: false
 	};
 
 	handleChange = (event, value) => {
-		this.setState({value});
+		
+	};
+
+	addEventOpen() {
+		this.setState({addEventState: true});
+	};
+	
+	addEventClose() {
+		this.setState({ addEventState: false });
 	};
 
 	render() {
@@ -72,8 +82,7 @@ class Dashboard extends Component {
 
 									<Grid item style={{marginTop: "auto", marginBottom: "auto", marginRight: 20}}>
 										<Button style={{color: "#7D19E5", backgroundColor: "#FCD704"}} color="inherit"
-										        onClick={() => {
-										        }}>Add Event</Button>
+											onClick={() => { this.addEventOpen()}}>Add Event</Button>
 									</Grid>
 								</Grid>
 							</div>
@@ -106,6 +115,16 @@ class Dashboard extends Component {
 						</AppBar>
 					</Paper>
 				</div>
+
+				<Modal open={this.state.addEventState} onClose={this.addEventClose.bind(this)} center>
+					<h2>Simple centered modal</h2>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+						pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+						hendrerit risus, sed porttitor quam.
+          			</p>
+				</Modal>
+
 			</div>
 		);
 	}
