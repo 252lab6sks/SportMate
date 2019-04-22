@@ -61,7 +61,8 @@ class Dashboard extends Component {
 			location: this.state.location,
 			capacity: this.state.capacity,
 			time: this.state.time,
-			people: { "1": `${this.state.email}` }
+			people: { "1": `${this.state.email}` },
+      host: this.state.email
 			
 		}).then((data) => console.log("Added to db")).catch((error) => console.log(error));
 	};
