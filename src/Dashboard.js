@@ -9,6 +9,9 @@ import Grid from "@material-ui/core/Grid";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Modal from 'react-responsive-modal';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
 
 class Dashboard extends Component {
 
@@ -117,12 +120,14 @@ class Dashboard extends Component {
 				</div>
 
 				<Modal open={this.state.addEventState} onClose={this.addEventClose.bind(this)} center>
-					<h2>Simple centered modal</h2>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-						pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-						hendrerit risus, sed porttitor quam.
-          			</p>
+					<h2>Add Event</h2>
+					<FormControl style={{width: 500}} margin="normal" required fullWidth>
+						<InputLabel htmlFor="email"> Sport </InputLabel>
+						<Input 	onChange={event => {
+									this.setState({ email: event.target.value });
+								}} 
+						/>
+					</FormControl>
 				</Modal>
 
 			</div>
