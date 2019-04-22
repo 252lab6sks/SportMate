@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "./Dashboard.css";
 import Paper from "@material-ui/core/Paper";
 import AppBar from "@material-ui/core/AppBar";
@@ -13,29 +13,38 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import TableView from './TableView';
-import firebase from 'firebase';
-import { db } from './base';
+import {db} from './base';
 
 class Dashboard extends Component {
-	
+
 	state = {
 		email: '',
 		uid: '',
 		value: 0,
 		addEventState: false,
-
 		sport: '',
 		location: '',
 		capacity: '',
 		time: '',
 		host: '',
+		events: {},
 	};
 
 	componentWillMount() {
+		let email = localStorage.getItem('email');
+		let uid = localStorage.getItem('uid');
 		this.setState({
-			email: localStorage.getItem('email'),
-			uid: localStorage.getItem('uid'),
-		})
+			email: email,
+			uid: uid,
+		});
+
+		db.ref("events/").once('value').then((snapshot) => {
+			this.setState({
+				events: snapshot.val(),
+			});
+			// console.log(this.state.events);
+		});
+
 	}
 
 	handleChange = (event, value) => {
@@ -45,23 +54,22 @@ class Dashboard extends Component {
 	addEventOpen() {
 		this.setState({addEventState: true});
 	};
-	
+
 	addEventClose() {
-		this.setState({ addEventState: false });
+		this.setState({addEventState: false});
 	};
 
 	eventSubmit() {
 		var ref = db.ref("events/").push();
 		var eventID = ref.key;
-  
 
 		db.ref("events/" + eventID + "/").set({
 			sport: this.state.sport,
 			location: this.state.location,
 			capacity: this.state.capacity,
 			time: this.state.time,
-			people: { "1": `${this.state.email}` }
-			
+			people: {"1": `${this.state.email}`}
+
 		}).then((data) => console.log("Added to db")).catch((error) => console.log(error));
 	};
 
@@ -116,7 +124,9 @@ class Dashboard extends Component {
 
 									<Grid item style={{marginTop: "auto", marginBottom: "auto", marginRight: 20}}>
 										<Button style={{color: "#7D19E5", backgroundColor: "#FCD704"}} color="inherit"
-											onClick={() => { this.addEventOpen()}}>Add Event</Button>
+										        onClick={() => {
+											        this.addEventOpen()
+										        }}>Add Event</Button>
 									</Grid>
 								</Grid>
 							</div>
@@ -126,8 +136,8 @@ class Dashboard extends Component {
 								<Tab label="You joined"/>
 							</Tabs>
 						</AppBar>
-						{this.state.value === 0 && <TableView/>}
-						{this.state.value === 1 && <TableView/>}
+						{this.state.value === 0 && <TableView events={this.state.events}/>}
+						{this.state.value === 1 && <TableView events={this.state.events}/>}
 					</Paper>
 				</div>
 
@@ -148,55 +158,63 @@ class Dashboard extends Component {
 									</Grid>
 								</Grid>
 							</div>
-							<TableView/>
+							<TableView events={this.state.events}/>
 						</AppBar>
 					</Paper>
 				</div>
 
 				<Modal open={this.state.addEventState} onClose={this.addEventClose.bind(this)}>
 					<h2>Add Event</h2>
-					<div style={{ display: "flex", flexDirection: "column" }}>
-						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 5 }}>
+					<div style={{display: "flex", flexDirection: "column"}}>
+						<FormControl style={{marginLeft: 20, marginRight: 20, marginTop: 5}}>
 							<InputLabel> Sport </InputLabel>
-							<Input style={{ width: 300 }} onChange={event => {
-								this.setState({ sport: event.target.value });
+							<Input style={{width: 300}} onChange={event => {
+								this.setState({sport: event.target.value});
 							}}
 							/>
 						</FormControl>
-						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
+						<FormControl style={{marginLeft: 20, marginRight: 20, marginTop: 15}}>
 							<InputLabel> Location </InputLabel>
-							<Input style={{ width: 300 }} onChange={event => {
-								this.setState({ location: event.target.value });
+							<Input style={{width: 300}} onChange={event => {
+								this.setState({location: event.target.value});
 							}}
 							/>
 						</FormControl>
-						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
+						<FormControl style={{marginLeft: 20, marginRight: 20, marginTop: 15}}>
 							<InputLabel> Capacity </InputLabel>
-							<Input style={{ width: 300 }} onChange={event => {
-								this.setState({ capacity: event.target.value });
+							<Input style={{width: 300}} onChange={event => {
+								this.setState({capacity: event.target.value});
 							}}
 							/>
 						</FormControl>
-						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
+						<FormControl style={{marginLeft: 20, marginRight: 20, marginTop: 15}}>
 							<InputLabel> Time </InputLabel>
-							<Input style={{ width: 300 }} onChange={event => {
-								this.setState({ time: event.target.value });
-						}}
-						/>
+							<Input style={{width: 300}} onChange={event => {
+								this.setState({time: event.target.value});
+							}}
+							/>
 						</FormControl>
-						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
+						<FormControl style={{marginLeft: 20, marginRight: 20, marginTop: 15}}>
 							<InputLabel> Host </InputLabel>
-							<Input style={{ width: 300 }} onChange={event => {
-								this.setState({ host: event.target.value });
+							<Input style={{width: 300}} onChange={event => {
+								this.setState({host: event.target.value});
 							}}
 							/>
 						</FormControl>
 
-						<Button style={{ color: "#7D19E5", backgroundColor: "#FCD704", marginTop: 30, marginLeft: 20, marginRight: 20 }}
-								color="inherit"
-								onClick={() => {this.eventSubmit()}}>
-							Submit 
-							</Button>
+						<Button style={{
+							color: "#7D19E5",
+							backgroundColor: "#FCD704",
+							marginTop: 30,
+							marginLeft: 20,
+							marginRight: 20
+						}}
+						        color="inherit"
+						        onClick={() => {
+							        this.eventSubmit()
+						        }}>
+							Submit
+						</Button>
 					</div>
 				</Modal>
 			</div>

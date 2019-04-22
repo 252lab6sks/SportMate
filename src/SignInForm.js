@@ -60,6 +60,7 @@ class SignInForm extends Component {
 		localStorage.setItem('loggedIn', loggedIn);
 		localStorage.setItem('email', this.state.email);
 		localStorage.setItem('uid', this.state.uid);
+		console.log("setting: " + localStorage.getItem('email'));
 	};
 
 	enterPress(event) {
