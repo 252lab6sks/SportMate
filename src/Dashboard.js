@@ -196,6 +196,7 @@ class Dashboard extends Component {
 							</Button>
 					</div>
 				</Modal>
+				<div style={{ height: 100 }} />
 			</div>
 		);
 	}

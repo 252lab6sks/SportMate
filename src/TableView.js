@@ -12,11 +12,11 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Grid from "@material-ui/core/Grid";
 
 const rows = [
-	createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-	createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-	createData("Eclair", 262, 16.0, 24, 6.0),
-	createData("Cupcake", 305, 3.7, 67, 4.3),
-	createData("Gingerbread", 356, 16.0, 49, 3.9)
+	createData("Frozen yoghurt Eclair Ice", 159, 6.0, 24, 4.0),
+	createData("Cream sandwich Ice Eclair", 237, 9.0, 37, 4.3),
+	createData("Eclair Ice cream sandwich", 262, 16.0, 24, 6.0),
+	createData("Cupcake Ice cream sandwich", 305, 3.7, 67, 4.3),
+	createData("Gingerbread Ice sandwich", 356, 16.0, 49, 3.9)
 ];
 
 let id = 0;
@@ -38,29 +38,29 @@ class TableView extends Component {
 						container
 						spacing={24}>
 
-						<Grid item style={{ margin: 10, marginLeft: 20 }}>
+						<Grid item>
 							<Typography align="left">
-								Sport
+								{row.fat}
 							</Typography>
 						</Grid>
-						<Grid item style={{ margin: 10, marginLeft: 20 }}>
+						<Grid item>
 							<Typography align="left">
-								Location
+								{row.name}
 							</Typography>
 						</Grid>
-						<Grid item style={{ margin: 10, marginLeft: 20 }}>
+						<Grid item>
 							<Typography align="left">
-								Capacity
+								{row.calories}
 							</Typography>
 						</Grid>
-						<Grid item style={{ margin: 10, marginLeft: 20 }}>
+						<Grid item>
 							<Typography align="left">
-								Time
+								{row.fat}
 							</Typography>
 						</Grid>
-						<Grid item style={{ margin: 10, marginLeft: 20 }}>
+						<Grid item>
 							<Typography align="left">
-								Host
+								{row.carbs}
 							</Typography>
 						</Grid>
 					</Grid>
@@ -68,7 +68,9 @@ class TableView extends Component {
 				<ExpansionPanelDetails>
 					<Typography>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-						malesuada lacus ex, sit amet blandit leo lobortis eget.
+						malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum 
+						dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada 
+						lacus ex, sit amet blandit leo lobortis eget.
           			</Typography>
 				</ExpansionPanelDetails>
 			</ExpansionPanel>
@@ -86,27 +88,27 @@ class TableView extends Component {
 							container
 							spacing={24}>
 
-							<Grid item style={{ margin: 10, marginLeft: 20 }}>
+							<Grid item>
 								<Typography style={{ color: "white", fontWeight: "bold", fontSize: 20 }} align="left">
 									Sport
 								</Typography>
 							</Grid>
-							<Grid item style={{ margin: 10, marginLeft: 20 }}>
+							<Grid item>
 								<Typography style={{ color: "white", fontWeight: "bold", fontSize: 20 }} align="left">
 									Location
 								</Typography>
 							</Grid>
-							<Grid item style={{ margin: 10, marginLeft: 20 }}>
+							<Grid item>
 								<Typography style={{ color: "white", fontWeight: "bold", fontSize: 20 }} align="left">
 									Capacity
 								</Typography>
 							</Grid>
-							<Grid item style={{ margin: 10, marginLeft: 20 }}>
+							<Grid item>
 								<Typography style={{ color: "white", fontWeight: "bold", fontSize: 20 }} align="left">
 									Time
 								</Typography>
 							</Grid>
-							<Grid item style={{ margin: 10, marginLeft: 20 }}>
+							<Grid item>
 								<Typography style={{ color: "white", fontWeight: "bold", fontSize: 20 }} align="left">
 									Host
 								</Typography>
