@@ -8,156 +8,236 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Grid from "@material-ui/core/Grid";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import TableView from './TableView'
-
+import Modal from 'react-responsive-modal';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
+import TableView from './TableView';
+import firebase from 'firebase';
+import { db } from './base';
 
 class Dashboard extends Component {
-  state = {
-    email: "",
-    uid: "",
-    value: 0
-  };
+	
+	state = {
+		email: '',
+		uid: '',
+		value: 0,
+		addEventState: false,
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
+		sport: '',
+		location: '',
+		capacity: '',
+		time: '',
+		host: '',
+	};
 
-  render() {
-    return (
-      <div>
-        <AppBar position="static" style={{ background: "#7D19E5" }}>
-          <Toolbar>
-            <Grid justify="space-between" container spacing={24}>
-              <Grid item>
-                <Typography variant="h6" color="inherit" align="left">
-                  SportMate
-                </Typography>
-              </Grid>
+	componentWillMount() {
+		this.setState({
+			email: localStorage.getItem('email'),
+			uid: localStorage.getItem('uid'),
+		})
+	}
 
-              <Grid item>
-                <Button
-                  style={{ color: "#7D19E5", backgroundColor: "#FCD704" }}
-                  color="inherit"
-                  onClick={() => {
-                    localStorage.setItem("loggedIn", "false");
-                    this.setState({
-                      email: "",
-                      uid: ""
-                    });
-                    this.props.SignInHandler(this.state);
-                  }}
-                >
-                  Logout
-                </Button>
-              </Grid>
-            </Grid>
-          </Toolbar>
-        </AppBar>
+	handleChange = (event, value) => {
+		this.setState({value: value});
+	};
 
-        <div style={styles.card}>
-          <Paper>
-            <AppBar position="static">
-              <div style={{ backgroundColor: "#7D19E5" }}>
-                <Grid
-                  justify="space-between"
-                  alignItems="center"
-                  container
-                  spacing={24}
-                >
-                  <Grid item style={{ margin: 10, marginLeft: 20 }}>
-                    <Typography variant="h6" color="inherit" align="left">
-                      Your Events
-                    </Typography>
-                  </Grid>
+	addEventOpen() {
+		this.setState({addEventState: true});
+	};
+	
+	addEventClose() {
+		this.setState({ addEventState: false });
+	};
 
-                  <Grid
-                    item
-                    style={{
-                      marginTop: "auto",
-                      marginBottom: "auto",
-                      marginRight: 20
-                    }}
-                  >
-                    <Button
-                      style={{ color: "#7D19E5", backgroundColor: "#FCD704" }}
-                      color="inherit"
-                      onClick={() => {}}
-                    >
-                      Add Event
-                    </Button>
-                  </Grid>
-                </Grid>
-              </div>
-              <Tabs
-                variant="fullWidth"
-                value={this.state.value}
-                onChange={this.handleChange}
-                style={{ background: "#7D19E5" }}
-              >
-                <Tab label="You created" />
-                <Tab label="You joined" />
-              </Tabs>
-            </AppBar>
+	eventSubmit() {
+		var ref = db.ref("events/").push();
+		var eventID = ref.key;
+  
 
-            {this.state.value === 0 && <TableView/>}
-        {this.state.value === 1 && <TableView/>}
-          </Paper>
-        </div>
+		db.ref("events/" + eventID + "/").set({
+			sport: this.state.sport,
+			location: this.state.location,
+			capacity: this.state.capacity,
+			time: this.state.time,
+			people: { "1": `${this.state.email}` }
+			
+		}).then((data) => console.log("Added to db")).catch((error) => console.log(error));
+	};
 
-        <div style={styles.card}>
-          <Paper>
-            <AppBar position="static">
-              <div style={{ backgroundColor: "#7D19E5" }}>
-                <Grid
-                  justify="space-between"
-                  alignItems="center"
-                  container
-                  spacing={24}
-                >
-                  <Grid item style={{ margin: 10, marginLeft: 20 }}>
-                    <Typography variant="h6" color="inherit" align="left">
-                      All Events
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </div>
-              <TableView />
-            </AppBar>
-          </Paper>
-        </div>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div>
+				<AppBar position="static" style={{background: "#7D19E5"}}>
+					<Toolbar>
+						<Grid
+							justify="space-between"
+							container
+							spacing={24}>
+
+							<Grid item>
+								<Typography variant="h6" color="inherit" align="left">
+									SportMate
+								</Typography>
+							</Grid>
+
+							<Grid item>
+								<Button style={{color: "#7D19E5", backgroundColor: "#FCD704"}} color="inherit"
+								        onClick={() => {
+									        localStorage.setItem('loggedIn', 'false');
+									        this.setState({
+										        email: '',
+										        uid: ''
+									        });
+									        this.props.SignInHandler(this.state);
+								        }}>
+									Logout</Button>
+							</Grid>
+
+						</Grid>
+					</Toolbar>
+				</AppBar>
+
+				<div style={styles.card}>
+					<Paper>
+						<AppBar position="static">
+							<div style={{backgroundColor: "#7D19E5"}}>
+								<Grid
+									justify="space-between"
+									alignItems="center"
+									container
+									spacing={24}>
+
+									<Grid item style={{margin: 10, marginLeft: 20}}>
+										<Typography variant="h6" color="inherit" align="left">
+											Your Events
+										</Typography>
+									</Grid>
+
+									<Grid item style={{marginTop: "auto", marginBottom: "auto", marginRight: 20}}>
+										<Button style={{color: "#7D19E5", backgroundColor: "#FCD704"}} color="inherit"
+											onClick={() => { this.addEventOpen()}}>Add Event</Button>
+									</Grid>
+								</Grid>
+							</div>
+							<Tabs variant="fullWidth" value={this.state.value} onChange={this.handleChange}
+							      style={{background: "#7D19E5"}}>
+								<Tab label="You created"/>
+								<Tab label="You joined"/>
+							</Tabs>
+						</AppBar>
+						{this.state.value === 0 && <TableView/>}
+						{this.state.value === 1 && <TableView/>}
+					</Paper>
+				</div>
+
+				<div style={styles.card}>
+					<Paper>
+						<AppBar position="static">
+							<div style={{backgroundColor: "#7D19E5"}}>
+								<Grid
+									justify="space-between"
+									alignItems="center"
+									container
+									spacing={24}>
+
+									<Grid item style={{margin: 10, marginLeft: 20}}>
+										<Typography variant="h6" color="inherit" align="left">
+											All Events
+										</Typography>
+									</Grid>
+								</Grid>
+							</div>
+							<TableView/>
+						</AppBar>
+					</Paper>
+				</div>
+
+				<Modal open={this.state.addEventState} onClose={this.addEventClose.bind(this)}>
+					<h2>Add Event</h2>
+					<div style={{ display: "flex", flexDirection: "column" }}>
+						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 5 }}>
+							<InputLabel> Sport </InputLabel>
+							<Input style={{ width: 300 }} onChange={event => {
+								this.setState({ sport: event.target.value });
+							}}
+							/>
+						</FormControl>
+						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
+							<InputLabel> Location </InputLabel>
+							<Input style={{ width: 300 }} onChange={event => {
+								this.setState({ location: event.target.value });
+							}}
+							/>
+						</FormControl>
+						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
+							<InputLabel> Capacity </InputLabel>
+							<Input style={{ width: 300 }} onChange={event => {
+								this.setState({ capacity: event.target.value });
+							}}
+							/>
+						</FormControl>
+						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
+							<InputLabel> Time </InputLabel>
+							<Input style={{ width: 300 }} onChange={event => {
+								this.setState({ time: event.target.value });
+						}}
+						/>
+						</FormControl>
+						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
+							<InputLabel> Host </InputLabel>
+							<Input style={{ width: 300 }} onChange={event => {
+								this.setState({ host: event.target.value });
+							}}
+							/>
+						</FormControl>
+
+						<Button style={{ color: "#7D19E5", backgroundColor: "#FCD704", marginTop: 30, marginLeft: 20, marginRight: 20 }}
+								color="inherit"
+								onClick={() => {this.eventSubmit()}}>
+							Submit 
+							</Button>
+					</div>
+				</Modal>
+			</div>
+		);
+	}
 }
 
 const styles = {
-  table: {
-    minWidth: 700
-  },
+	table: {
+		minWidth: 700
+	},
 
-  card: {
-    marginTop: 20,
-    marginLeft: "auto",
-    marginRight: "auto",
-    width: 900
-  },
+	card: {
+		marginTop: 20,
+		marginLeft: 'auto',
+		marginRight: 'auto',
+		width: 900,
+	},
 
-  bar: {
-    backgroundColor: "#7D19E5"
-  },
+	bar: {
+		backgroundColor: "#7D19E5",
+	},
 
-  root: {
-    flex: 3
-  },
+	root: {
+		flex: 3,
+	},
 
-  grow: {
-    flex: 1
-  },
+	grow: {
+		flex: 1,
+	},
 
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20
-  }
+	menuButton: {
+		marginLeft: -12,
+		marginRight: 20,
+	},
+
+	addEventInputStyle: {
+		marginTop: 30,
+		marginLeft: 15,
+		marginRight: 15,
+	}
 };
 
 export default Dashboard;

@@ -27,7 +27,8 @@ class SignInForm extends Component {
 					email: response.user.email,
 					uid: response.user.uid
 				});
-				localStorage.setItem('loggedIn', 'true');
+
+				this.setLocalValues("true");
 				this.props.SignInHandler(this.state);
 			})
 			.catch(error => {
@@ -46,12 +47,19 @@ class SignInForm extends Component {
 					email: response.user.email,
 					uid: response.user.uid
 				});
-				localStorage.setItem('loggedIn', 'true');
+
+				this.setLocalValues("true");
 				this.props.SignInHandler(this.state);
 			})
 			.catch(error => {
 				console.log(error)
 			});
+	};
+
+	setLocalValues(loggedIn) {
+		localStorage.setItem('loggedIn', loggedIn);
+		localStorage.setItem('email', this.state.email);
+		localStorage.setItem('uid', this.state.uid);
 	};
 
 	enterPress(event) {

@@ -11,8 +11,7 @@ class App extends Component {
 
 	//binding to this when sending to child because setting state of parent
 	SignInHandler(status) {
-		this.setState(
-			{
+		this.setState({
 				email: status.email,
 				uid: status.uid,
 			}
@@ -25,7 +24,7 @@ class App extends Component {
 		if (loggedIn === 'false') {
 			return <SignInForm SignInHandler={this.SignInHandler.bind(this)}/>;
 		} else {
-			return <Dashboard SignInHandler={this.SignInHandler.bind(this)}/>;
+			return <Dashboard SignInHandler={this.SignInHandler.bind(this)} userDetails={this.state}/>;
 		}
 	}
 }
