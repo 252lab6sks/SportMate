@@ -53,14 +53,14 @@ class Dashboard extends Component {
 	eventSubmit() {
 		var ref = db.ref("events/").push();
 		var eventID = ref.key;
+  
 
 		db.ref("events/" + eventID + "/").set({
 			sport: this.state.sport,
 			location: this.state.location,
 			capacity: this.state.capacity,
 			time: this.state.time,
-			host: this.state.host,
-			people: { "abcd": this.state.email, }
+			people: { "1": `${this.state.email}` }
 			
 		}).then((data) => console.log("Added to db")).catch((error) => console.log(error));
 	};
