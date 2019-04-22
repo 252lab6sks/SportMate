@@ -20,8 +20,21 @@ class Dashboard extends Component {
 		email: '',
 		uid: '',
 		value: 0,
-		addEventState: false
+		addEventState: false,
+
+		sport: '',
+		location: '',
+		capacity: '',
+		time: '',
+		host: '',
 	};
+
+	componentWillMount() {
+		this.setState({
+			email: localStorage.getItem('email'),
+			uid: localStorage.getItem('uid'),
+		})
+	}
 
 	handleChange = (event, value) => {
 		this.setState({value: value});
@@ -33,6 +46,10 @@ class Dashboard extends Component {
 	
 	addEventClose() {
 		this.setState({ addEventState: false });
+	};
+
+	eventSubmit() {
+		console.log(this.state);
 	};
 
 	render() {
@@ -129,53 +146,46 @@ class Dashboard extends Component {
 						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 5 }}>
 							<InputLabel> Sport </InputLabel>
 							<Input style={{ width: 300 }} onChange={event => {
-								this.setState({});
+								this.setState({ sport: event.target.value });
 							}}
 							/>
 						</FormControl>
 						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
 							<InputLabel> Location </InputLabel>
 							<Input style={{ width: 300 }} onChange={event => {
-								this.setState({});
+								this.setState({ location: event.target.value });
 							}}
 							/>
 						</FormControl>
 						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
 							<InputLabel> Capacity </InputLabel>
 							<Input style={{ width: 300 }} onChange={event => {
-								this.setState({});
+								this.setState({ capacity: event.target.value });
 							}}
 							/>
 						</FormControl>
 						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
 							<InputLabel> Time </InputLabel>
 							<Input style={{ width: 300 }} onChange={event => {
-								this.setState({});
-							}}
-							/>
+								this.setState({ time: event.target.value });
+						}}
+						/>
 						</FormControl>
 						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
 							<InputLabel> Host </InputLabel>
 							<Input style={{ width: 300 }} onChange={event => {
-								this.setState({});
+								this.setState({ host: event.target.value });
 							}}
 							/>
 						</FormControl>
 
 						<Button style={{ color: "#7D19E5", backgroundColor: "#FCD704", marginTop: 30, marginLeft: 20, marginRight: 20 }}
 								color="inherit"
-								onClick={() => {
-									localStorage.setItem('loggedIn', 'false');
-									this.setState({
-										email: '',
-										uid: ''
-									});
-									this.props.SignInHandler(this.state);
-							}}>
-							Submit</Button>
+								onClick={() => {this.eventSubmit()}}>
+							Submit 
+							</Button>
 					</div>
 				</Modal>
-
 			</div>
 		);
 	}
