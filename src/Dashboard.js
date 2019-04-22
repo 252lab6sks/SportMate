@@ -119,43 +119,57 @@ class Dashboard extends Component {
 					</Paper>
 				</div>
 
-				<Modal open={this.state.addEventState} onClose={this.addEventClose.bind(this)} center>
+				<Modal open={this.state.addEventState} onClose={this.addEventClose.bind(this)}>
 					<h2>Add Event</h2>
-					<FormControl style={{ width: 500 }} margin="normal" required fullWidth>
-						<InputLabel> Sport </InputLabel>
-						<Input onChange={event => {
-							this.setState({});
-						}}
-						/>
-					</FormControl>
-					<FormControl style={{ width: 500 }} margin="normal" required fullWidth>
-						<InputLabel> Location </InputLabel>
-						<Input onChange={event => {
-							this.setState({});
-						}}
-						/>
-					</FormControl>
-					<FormControl style={{ width: 500 }} margin="normal" required fullWidth>
-						<InputLabel> Capacity </InputLabel>
-						<Input onChange={event => {
-							this.setState({});
-						}}
-						/>
-					</FormControl>
-					<FormControl style={{ width: 500 }} margin="normal" required fullWidth>
-						<InputLabel> Time </InputLabel>
-						<Input onChange={event => {
-							this.setState({});
-						}}
-						/>
-					</FormControl>
-					<FormControl style={{ width: 500 }} margin="normal" required fullWidth>
-						<InputLabel> Host </InputLabel>
-						<Input onChange={event => {
-							this.setState({});
-						}}
-						/>
-					</FormControl>
+					<div style={{ display: "flex", flexDirection: "column" }}>
+						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 5 }}>
+							<InputLabel> Sport </InputLabel>
+							<Input style={{ width: 300 }} onChange={event => {
+								this.setState({});
+							}}
+							/>
+						</FormControl>
+						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
+							<InputLabel> Location </InputLabel>
+							<Input style={{ width: 300 }} onChange={event => {
+								this.setState({});
+							}}
+							/>
+						</FormControl>
+						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
+							<InputLabel> Capacity </InputLabel>
+							<Input style={{ width: 300 }} onChange={event => {
+								this.setState({});
+							}}
+							/>
+						</FormControl>
+						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
+							<InputLabel> Time </InputLabel>
+							<Input style={{ width: 300 }} onChange={event => {
+								this.setState({});
+							}}
+							/>
+						</FormControl>
+						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
+							<InputLabel> Host </InputLabel>
+							<Input style={{ width: 300 }} onChange={event => {
+								this.setState({});
+							}}
+							/>
+						</FormControl>
+
+						<Button style={{ color: "#7D19E5", backgroundColor: "#FCD704", marginTop: 30, marginLeft: 20, marginRight: 20 }}
+								color="inherit"
+								onClick={() => {
+									localStorage.setItem('loggedIn', 'false');
+									this.setState({
+										email: '',
+										uid: ''
+									});
+									this.props.SignInHandler(this.state);
+							}}>
+							Submit</Button>
+					</div>
 				</Modal>
 
 			</div>
@@ -189,7 +203,11 @@ const styles = {
 		marginRight: 20,
 	},
 
-
+	addEventInputStyle: {
+		marginTop: 30,
+		marginLeft: 15,
+		marginRight: 15,
+	}
 };
 
 export default Dashboard;
