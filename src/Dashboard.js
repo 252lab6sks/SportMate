@@ -15,6 +15,7 @@ import Input from '@material-ui/core/Input';
 import TableView from './TableView';
 import {db} from './base';
 
+
 class Dashboard extends Component {
 
 	state = {
@@ -136,8 +137,8 @@ class Dashboard extends Component {
 								<Tab label="You joined"/>
 							</Tabs>
 						</AppBar>
-						{this.state.value === 0 && <TableView events={this.state.events}/>}
-						{this.state.value === 1 && <TableView events={this.state.events}/>}
+						{this.state.value === 0 && <TableView events={this.state.events} type ='created' email={this.state.email}/>}
+						{this.state.value === 1 && <TableView events={this.state.events} type = 'joined' email={this.state.email}/>}
 					</Paper>
 				</div>
 
@@ -158,7 +159,7 @@ class Dashboard extends Component {
 									</Grid>
 								</Grid>
 							</div>
-							<TableView events={this.state.events}/>
+							<TableView events={this.state.events} type = 'all' email={this.state.email}/>
 						</AppBar>
 					</Paper>
 				</div>

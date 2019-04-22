@@ -31,20 +31,46 @@ class TableView extends Component {
 	loadEvents = () => {
 		console.log("after");
 		console.log(this.props.events);
+		console.log(this.props.email);
+
 
 		var rows = [];
-		if (this.props.events) {
-			Object.keys(this.props.events).forEach((key, index) => {
-					let row = createData(
-						this.props.events[key].sport,
-						this.props.events[key].location,
-						this.props.events[key].capacity,
-						this.props.events[key].time,
-						this.props.events[key].host,
-					);
-					rows.push(row);
-				}
-			);
+		if (this.props.events && this.props.type && this.props.email) {
+			if (this.props.type == 'created') {
+				Object.keys(this.props.events).forEach((key, index) => {
+						if (this.props.events[key].host == this.props.email) {
+							let row = createData(
+								this.props.events[key].sport,
+								this.props.events[key].location,
+								this.props.events[key].capacity,
+								this.props.events[key].time,
+								this.props.events[key].host,
+							);
+							rows.push(row);
+						}
+					}
+				);
+				console.log(rows)
+
+			} else if (this.props.type == 'joined') {
+				//TODO: make this work
+
+			} else {
+				Object.keys(this.props.events).forEach((key, index) => {
+						let row = createData(
+							this.props.events[key].sport,
+							this.props.events[key].location,
+							this.props.events[key].capacity,
+							this.props.events[key].time,
+							this.props.events[key].host,
+						);
+						rows.push(row);
+
+					}
+				);
+				console.log(rows)
+
+			}
 
 			return (
 				rows.map(row => (
@@ -63,6 +89,7 @@ class TableView extends Component {
 				))
 
 			)
+
 		}
 
 	};
