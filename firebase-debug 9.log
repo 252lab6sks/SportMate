@@ -1,0 +1,80 @@
+[debug] [2019-04-20T02:38:27.994Z] ----------------------------------------------------------------------
+[debug] [2019-04-20T02:38:27.997Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2019-04-20T02:38:27.997Z] CLI Version:   6.7.0
+[debug] [2019-04-20T02:38:27.997Z] Platform:      darwin
+[debug] [2019-04-20T02:38:27.997Z] Node Version:  v8.10.0
+[debug] [2019-04-20T02:38:27.997Z] Time:          Fri Apr 19 2019 22:38:27 GMT-0400 (EDT)
+[debug] [2019-04-20T02:38:27.997Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-04-20T02:38:28.006Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-04-20T02:38:28.007Z] > authorizing via signed-in user
+[debug] [2019-04-20T02:38:28.007Z] [iam] checking project sportmate-9e1cf for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-04-20T02:38:28.009Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/sportmate-9e1cf:testIamPermissions  
+
+[debug] [2019-04-20T02:38:28.422Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-20T02:38:28.424Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/sportmate-9e1cf  
+ 
+[debug] [2019-04-20T02:38:28.622Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'sportmate-9e1cf'...
+[info] 
+[info] i  deploying functions, hosting
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] ✔  functions: Finished running predeploy script.
+[debug] [2019-04-20T02:38:31.609Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase serve --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "firebase-admin": "~7.0.0",
+    "firebase-functions": "^2.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslint-plugin-promise": "^4.0.1"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2019-04-20T02:38:31.610Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/sportmate-9e1cf?view=CONSUMER_VIEW  
+ 
+[debug] [2019-04-20T02:38:31.611Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/sportmate-9e1cf?view=CONSUMER_VIEW  
+ 
+[debug] [2019-04-20T02:38:32.394Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2019-04-20T02:38:32.482Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-20T02:38:32.483Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/sportmate-9e1cf  
+ 
+[debug] [2019-04-20T02:38:32.700Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-20T02:38:32.701Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/629833329562:getServerAppConfig  
+ 
+[debug] [2019-04-20T02:38:32.875Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-20T02:38:32.878Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/sportmate-9e1cf/versions  
+
+[debug] [2019-04-20T02:38:33.321Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2019-04-20T02:38:33.323Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/sportmate-9e1cf/configs  
+ 
+[debug] [2019-04-20T02:38:33.526Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (38.59 KB) for uploading
+[debug] [2019-04-20T02:38:33.688Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/sportmate-9e1cf/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2019-04-20T02:38:34.035Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-20T02:38:34.036Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-53332fbb-c842-49a4-83fc-98c95577782e/716e2e6b-21c3-4314-a024-f7d63c7c5dd1.zip?GoogleAccessId=service-629833329562@gcf-admin-robot.iam.gserviceaccount.com&Expires=1555729715&Signature=alaWCwHQUmQomq0WahAUptRUFHhxP8myaUZ9KZY8VBGxFqVV9ecOyYYcJEcAlsxwYA8J%2FLWkf0%2B%2Bdecy%2FdIyFNYD1fixmzacn92Gazc%2Bh9t%2BC1pb25b9HhOI1eJxQw4cmLb%2BHKjJoiJ8rY6pzjYBYhlvGhvIKQLRbfVyAaUz2nnGPq3MQBamJy%2BhWyHAUS%2BOA%2BY%2BPaHE2bDSIK4OkT1JVIqnAaPPGbIJjsvht2bUyk%2FGTjOP7B%2FXPPz9iITptiZhqNtCg5P%2FDYEsiXulbXW0i91iU9Ys55K8VRASK5Ens5H%2FNsU3hHfGgAOPBx5c9tmfj0BcUEKsU90VC0Hn8RWezQ%3D%3D  
+
+[debug] [2019-04-20T02:38:34.440Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: functions folder uploaded successfully
+[info] i  hosting[sportmate-9e1cf]: beginning deploy...
+[info] i  hosting[sportmate-9e1cf]: found 15 files in public
+[debug] [2019-04-20T02:38:34.450Z] [hosting] hash cache [cHVibGlj] load error: lines is not defined
+[debug] [2019-04-20T02:38:34.928Z] [hosting] hash cache [cHVibGlj] stored for 15 files
+[debug] [2019-04-20T02:38:34.929Z] [hosting][hash queue][FINAL]
+[debug] [2019-04-20T02:38:34.929Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/sportmate-9e1cf/versions/bf6bfa69642233e9:populateFiles  
+ <request body omitted>

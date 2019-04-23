@@ -33,6 +33,10 @@ class Dashboard extends Component {
 	};
 
 	componentWillMount() {
+
+     
+
+
 		this.setState({
 			email: localStorage.getItem('email'),
 			uid: localStorage.getItem('uid'),
