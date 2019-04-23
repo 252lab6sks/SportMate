@@ -8,11 +8,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Grid from "@material-ui/core/Grid";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Modal from 'react-responsive-modal';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
 import TableView from './TableView';
+import AddEventModal from './AddEventModal.js'
 import { db } from './base';
 
 class Dashboard extends Component {
@@ -22,46 +19,59 @@ class Dashboard extends Component {
 		uid: '',
 		value: 0,
 		addEventState: false,
-
 		sport: '',
 		location: '',
 		capacity: '',
 		time: '',
 		host: '',
+		events: {},
 	};
 
 	componentWillMount() {
+		let email = localStorage.getItem('email');
+		let uid = localStorage.getItem('uid');
 		this.setState({
-			email: localStorage.getItem('email'),
-			uid: localStorage.getItem('uid'),
-		})
+			email: email,
+			uid: uid,
+		});
+
+		db.ref("events/").once('value').then((snapshot) => {
+			this.setState({
+				events: snapshot.val(),
+			});
+			// console.log(this.state.events);
+		});
+
 	}
 
 	handleChange = (event, value) => {
 		this.setState({ value: value });
 	};
 
-	addEventOpen() {
+	addEventOpen = () => {
 		this.setState({ addEventState: true });
 	};
 
-	addEventClose() {
+	addEventClose = () => {
 		this.setState({ addEventState: false });
 	};
 
-	eventSubmit() {
+	eventSubmit = () => {
 		var ref = db.ref("events/").push();
 		var eventID = ref.key;
-
 
 		db.ref("events/" + eventID + "/").set({
 			sport: this.state.sport,
 			location: this.state.location,
 			capacity: this.state.capacity,
 			time: this.state.time,
-			people: { "1": `${this.state.email}` }
+			people: { "1": `${this.state.email}` },
+			host: this.state.email
 
-		}).then((data) => console.log("Added to db")).catch((error) => console.log(error));
+		}).then((data) => {
+			console.log("Added to db");
+			this.addEventClose();
+		}).catch((error) => console.log(error));
 	};
 
 	render() {
@@ -98,7 +108,6 @@ class Dashboard extends Component {
 				</AppBar>
 
 				<div style={styles.card}>
-					{/* <Paper> */}
 					<AppBar position="static">
 						<div style={{ backgroundColor: "#7D19E5" }}>
 							<Grid
@@ -115,7 +124,9 @@ class Dashboard extends Component {
 
 								<Grid item style={{ marginTop: "auto", marginBottom: "auto", marginRight: 20 }}>
 									<Button style={{ color: "#7D19E5", backgroundColor: "#FCD704" }} color="inherit"
-										onClick={() => { this.addEventOpen() }}>Add Event</Button>
+										onClick={() => {
+											this.addEventOpen()
+										}}>Add Event</Button>
 								</Grid>
 							</Grid>
 						</div>
@@ -125,9 +136,10 @@ class Dashboard extends Component {
 							<Tab label="You joined" />
 						</Tabs>
 					</AppBar>
-					{this.state.value === 0 && <TableView />}
-					{this.state.value === 1 && <TableView />}
-					{/* </Paper> */}
+					{this.state.value === 0 &&
+						<TableView events={this.state.events} type='created' email={this.state.email} />}
+					{this.state.value === 1 &&
+						<TableView events={this.state.events} type='joined' email={this.state.email} />}
 				</div>
 
 				<div style={styles.card}>
@@ -147,56 +159,11 @@ class Dashboard extends Component {
 							</Grid>
 						</div>
 					</AppBar>
-					<TableView/>
+
+					<TableView events={this.state.events} type='all' email={this.state.email} />
 				</div>
 
-				<Modal open={this.state.addEventState} onClose={this.addEventClose.bind(this)}>
-					<h2>Add Event</h2>
-					<div style={{ display: "flex", flexDirection: "column" }}>
-						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 5 }}>
-							<InputLabel> Sport </InputLabel>
-							<Input style={{ width: 300 }} onChange={event => {
-								this.setState({ sport: event.target.value });
-							}}
-							/>
-						</FormControl>
-						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
-							<InputLabel> Location </InputLabel>
-							<Input style={{ width: 300 }} onChange={event => {
-								this.setState({ location: event.target.value });
-							}}
-							/>
-						</FormControl>
-						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
-							<InputLabel> Capacity </InputLabel>
-							<Input style={{ width: 300 }} onChange={event => {
-								this.setState({ capacity: event.target.value });
-							}}
-							/>
-						</FormControl>
-						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
-							<InputLabel> Time </InputLabel>
-							<Input style={{ width: 300 }} onChange={event => {
-								this.setState({ time: event.target.value });
-							}}
-							/>
-						</FormControl>
-						<FormControl style={{ marginLeft: 20, marginRight: 20, marginTop: 15 }}>
-							<InputLabel> Host </InputLabel>
-							<Input style={{ width: 300 }} onChange={event => {
-								this.setState({ host: event.target.value });
-							}}
-							/>
-						</FormControl>
-
-						<Button style={{ color: "#7D19E5", backgroundColor: "#FCD704", marginTop: 30, marginLeft: 20, marginRight: 20 }}
-							color="inherit"
-							onClick={() => { this.eventSubmit() }}>
-							Submit
-							</Button>
-					</div>
-				</Modal>
-				<div style={{ height: 100 }} />
+				<AddEventModal details={this.state} addEventOpen={this.addEventOpen} addEventClose={this.addEventClose} />
 			</div>
 		);
 	}

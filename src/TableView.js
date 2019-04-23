@@ -11,24 +11,19 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Grid from "@material-ui/core/Grid";
 
-const rows = [
-	createData("Frozen yoghurt Eclair Ice", 159, 6.0, 24, 4.0),
-	createData("Cream sandwich Ice Eclair", 237, 9.0, 37, 4.3),
-	createData("Eclair Ice cream sandwich", 262, 16.0, 24, 6.0),
-	createData("Cupcake Ice cream sandwich", 305, 3.7, 67, 4.3),
-	createData("Gingerbread Ice sandwich", 356, 16.0, 49, 3.9)
-];
-
 let id = 0;
-function createData(name, calories, fat, carbs, protein) {
+
+function createData(sport, location, capacity, time, host) {
 	id += 1;
-	return { id, name, calories, fat, carbs, protein };
-};
+	return { id, sport, location, capacity, time, host };
+}
 
 class TableView extends Component {
 	state = {};
 
 	getTableComponent(row) {
+		console.log(row);
+
 		return (
 			<ExpansionPanel style={{ width: 900 }}>
 				<ExpansionPanelSummary>
@@ -40,27 +35,27 @@ class TableView extends Component {
 
 						<Grid item>
 							<Typography align="left">
-								{row.fat}
+								{row.sport}
 							</Typography>
 						</Grid>
 						<Grid item>
 							<Typography align="left">
-								{row.name}
+								{row.location}
 							</Typography>
 						</Grid>
 						<Grid item>
 							<Typography align="left">
-								{row.calories}
+								{row.capacity}
 							</Typography>
 						</Grid>
 						<Grid item>
 							<Typography align="left">
-								{row.fat}
+								{row.time}
 							</Typography>
 						</Grid>
 						<Grid item>
 							<Typography align="left">
-								{row.carbs}
+								{row.host}
 							</Typography>
 						</Grid>
 					</Grid>
@@ -68,14 +63,124 @@ class TableView extends Component {
 				<ExpansionPanelDetails>
 					<Typography>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-						malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum 
-						dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada 
+						malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
+						dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
 						lacus ex, sit amet blandit leo lobortis eget.
           			</Typography>
 				</ExpansionPanelDetails>
 			</ExpansionPanel>
 		);
 	}
+
+	loadEvents = () => {
+		var rows = [];
+		if (this.props.events && this.props.type && this.props.email) {
+			if (this.props.type == 'created') {
+				Object.keys(this.props.events).forEach((key, index) => {
+					if (this.props.events[key].host == this.props.email) {
+						let row = createData(
+							this.props.events[key].sport,
+							this.props.events[key].location,
+							this.props.events[key].capacity,
+							this.props.events[key].time,
+							this.props.events[key].host,
+						);
+						rows.push(row);
+					}
+				}
+				);
+				console.log("All DATA1: ");
+				console.log(rows);
+
+			} 
+			else if (this.props.type == 'joined') {
+				Object.keys(this.props.events).forEach((key, index) => {
+					Object.keys(this.props.events[key].people).forEach((key_child, index_child) => {
+						if (this.props.events[key].people[key_child] == this.props.email &&
+							this.props.events[key].host != this.props.email) {
+							let row = createData(
+								this.props.events[key].sport,
+								this.props.events[key].location,
+								this.props.events[key].capacity,
+								this.props.events[key].time,
+								this.props.events[key].host,
+							);
+							rows.push(row);
+						}
+					}
+					);
+				}
+				);
+
+			} 
+			else {
+				Object.keys(this.props.events).forEach((key, index) => {
+					let row = createData(
+						this.props.events[key].sport,
+						this.props.events[key].location,
+						this.props.events[key].capacity,
+						this.props.events[key].time,
+						this.props.events[key].host,
+					);
+					rows.push(row);
+
+				}
+				);
+				console.log("All DATA2: ");
+				console.log(rows);
+
+			}
+
+			return (rows.map(row => (
+				<ExpansionPanel style={{ width: 900 }}>
+					<ExpansionPanelSummary>
+						<Grid
+							justify="space-between"
+							alignItems="left"
+							container
+							spacing={24}>
+
+							<Grid item>
+								<Typography align="left">
+									{row.sport}
+								</Typography>
+							</Grid>
+							<Grid item>
+								<Typography align="left">
+									{row.location}
+								</Typography>
+							</Grid>
+							<Grid item>
+								<Typography align="left">
+									{row.capacity}
+								</Typography>
+							</Grid>
+							<Grid item>
+								<Typography align="left">
+									{row.time}
+								</Typography>
+							</Grid>
+							<Grid item>
+								<Typography align="left">
+									{row.host}
+								</Typography>
+							</Grid>
+						</Grid>
+					</ExpansionPanelSummary>
+					<ExpansionPanelDetails>
+						<Typography>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+							malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
+							dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
+							lacus ex, sit amet blandit leo lobortis eget.
+          			</Typography>
+					</ExpansionPanelDetails>
+				</ExpansionPanel>
+			)));
+		}
+	}
+
+
 
 	render() {
 		return (
@@ -116,16 +221,23 @@ class TableView extends Component {
 						</Grid>
 					</ExpansionPanelSummary>
 				</ExpansionPanel>
-				{rows.map(row => this.getTableComponent(row))}
+				{this.loadEvents()}
 			</div>
 		);
-	}
+	};
 }
 
 const styles = {
 	table: {
 		minWidth: 700
 	},
+
+	card: {
+		marginTop: 20,
+		marginLeft: "auto",
+		marginRight: "auto",
+		width: 900
+	}
 };
 
 export default TableView;
