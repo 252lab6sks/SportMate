@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./Dashboard.css";
-import Paper from "@material-ui/core/Paper";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";

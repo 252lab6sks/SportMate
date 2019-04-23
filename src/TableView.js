@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import "./Dashboard.css";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import { Button, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
@@ -13,16 +8,15 @@ import Grid from "@material-ui/core/Grid";
 
 let id = 0;
 
-function createData(sport, location, capacity, time, host) {
+function createData(sport, location, capacity, time, host, people) {
 	id += 1;
-	return { id, sport, location, capacity, time, host };
+	return { id, sport, location, capacity, time, host, people };
 }
 
 class TableView extends Component {
 	state = {};
 
 	getTableComponent(row) {
-		console.log(row);
 
 		return (
 			<ExpansionPanel style={{ width: 900 }}>
@@ -61,18 +55,26 @@ class TableView extends Component {
 					</Grid>
 				</ExpansionPanelSummary>
 				<ExpansionPanelDetails>
-					<Typography>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-						malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-						lacus ex, sit amet blandit leo lobortis eget.
-          			</Typography>
+					{this.getPeople(row.people)};
 				</ExpansionPanelDetails>
 			</ExpansionPanel>
 		);
 	}
 
+	getPeople(people){
+		return people.map(person => this.getPerson(person));
+	}
+
+	getPerson(person){
+		return(
+			<Typography>
+				{person}
+          	</Typography>
+		);
+	}
+
 	loadEvents = () => {
+
 		var rows = [];
 		if (this.props.events && this.props.type && this.props.email) {
 			if (this.props.type == 'created') {
@@ -84,13 +86,12 @@ class TableView extends Component {
 							this.props.events[key].capacity,
 							this.props.events[key].time,
 							this.props.events[key].host,
+							this.props.events[key].people,
 						);
 						rows.push(row);
 					}
 				}
 				);
-				console.log("All DATA1: ");
-				console.log(rows);
 
 			} 
 			else if (this.props.type == 'joined') {
@@ -104,6 +105,7 @@ class TableView extends Component {
 								this.props.events[key].capacity,
 								this.props.events[key].time,
 								this.props.events[key].host,
+								this.props.events[key].people,
 							);
 							rows.push(row);
 						}
@@ -121,13 +123,11 @@ class TableView extends Component {
 						this.props.events[key].capacity,
 						this.props.events[key].time,
 						this.props.events[key].host,
+						this.props.events[key].people,
 					);
 					rows.push(row);
-
 				}
 				);
-				console.log("All DATA2: ");
-				console.log(rows);
 
 			}
 
@@ -168,19 +168,12 @@ class TableView extends Component {
 						</Grid>
 					</ExpansionPanelSummary>
 					<ExpansionPanelDetails>
-						<Typography>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-							malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-							dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-							lacus ex, sit amet blandit leo lobortis eget.
-          			</Typography>
+						{this.getPeople(row.people)}
 					</ExpansionPanelDetails>
 				</ExpansionPanel>
 			)));
 		}
 	}
-
-
 
 	render() {
 		return (
