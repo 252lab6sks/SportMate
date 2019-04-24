@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
-import {db} from './base';
+import {db, functions} from './base';
 import {DateTimePicker, MuiPickersUtilsProvider} from 'material-ui-pickers';
 import DateFnsUtils from '@date-io/date-fns';
 
@@ -24,11 +24,22 @@ class AddEventModal extends Component {
 			location: this.props.details.location,
 			capacity: this.props.details.capacity,
 			time: this.props.details.time,
-			people: {"1": `${this.props.details.email}`},
+			people: {"host": `${this.props.details.email}`},
 			host: this.props.details.email
 
 		}).then((data) => {
 			console.log("Added to db");
+
+			// try {
+			// 	var getData = functions.httpsCallable("joined");
+			// 	getData({data: eventID, email: "s@s.com"}).then(result => {
+			// 		console.log(result.data.success);
+			// 	});
+			// } catch (error) {
+			// 	console.log("error " + error);
+			// }
+
+
 			this.props.addEventClose();
 		}).catch((error) => console.log(error));
 	};

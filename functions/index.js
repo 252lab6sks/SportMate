@@ -29,7 +29,7 @@ exports.dataGet = functions.https.onCall((data, context) => {
     .database()
     .ref("events/")
     .once("value", snapshot => {
-      id = 0;
+      let id = 0;
       var eventsObj = snapshot.val();
       Object.keys(eventsObj).forEach((key, index) => {
         id += 1;
@@ -51,4 +51,18 @@ exports.dataGet = functions.https.onCall((data, context) => {
         events: events
       };
     });
+});
+
+exports.joined = functions.https.onCall((data, context) => {
+
+    return admin
+        .database()
+        .ref("events/" + data.data + "/people/")
+        .push(data.email)
+        .then(() => {
+            return {
+                success: "JOINT"
+            }
+        });
+
 });
