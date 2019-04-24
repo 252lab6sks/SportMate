@@ -9,7 +9,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import TableView from './TableView';
 import AddEventModal from './AddEventModal.js'
-import { db } from './base';
+import { db,functions } from './base';
 
 class Dashboard extends Component {
 
@@ -23,7 +23,7 @@ class Dashboard extends Component {
 		capacity: '',
 		time: '',
 		host: '',
-		events: {},
+		events: [],
 	};
 
 	componentWillMount() {
@@ -35,11 +35,26 @@ class Dashboard extends Component {
 			uid: uid,
 		});
 
-		db.ref("events/").once('value').then((snapshot) => {
+		// db.ref("events/").once('value').then((snapshot) => {
+		// 	this.setState({
+		// 		events: snapshot.val(),
+		// 	});
+		// });
+		// var events;
+
+		try{
+		var getData = functions.httpsCallable('dataGet');
+		getData().then((result)=> {
 			this.setState({
-				events: snapshot.val(),
+					events: result.data.events,
 			});
-		});
+		
+		})
+
+
+		}catch(error){
+			console.log("error "+error)
+		}
 	}
 
 	handleChange = (event, value) => {
