@@ -27,7 +27,8 @@ class AddEventModal extends Component {
 			capacity: this.props.details.capacity,
 			time: time,
 			people: {"host": `${this.props.details.email}`},
-			host: this.props.details.email
+			host: this.props.details.email,
+			eid: eventID
 
 		}).then((data) => {
 			console.log("Added to db");

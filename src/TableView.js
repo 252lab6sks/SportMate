@@ -1,9 +1,11 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "./Dashboard.css";
-import { Typography } from "@material-ui/core";
+import {Button, Typography} from "@material-ui/core";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import {functions, auth} from './base';
+
 
 // TODO: SET MIN/MAX TABLE WIDTH VALUES
 
@@ -12,27 +14,42 @@ class TableView extends Component {
 
 	getTableComponent(row) {
 		return (
-			<ExpansionPanel style={{ width: "100%" }}>
+			<ExpansionPanel style={{width: "100%"}}>
 				<ExpansionPanelSummary>
-					<Typography align="left" style={{ width: tableValues.sport }}>
+					<Typography align="left" style={{width: tableValues.sport}}>
 						{row.sport}
 					</Typography>
-					<Typography align="left" style={{ width: tableValues.location }}>
+					<Typography align="left" style={{width: tableValues.location}}>
 						{row.location}
 					</Typography>
-					<Typography align="left" style={{ width: tableValues.capacity }}>
+					<Typography align="left" style={{width: tableValues.capacity}}>
 						{row.capacity}
 					</Typography>
-					<Typography align="left" style={{ width: tableValues.time }}>
+					<Typography align="left" style={{width: tableValues.time}}>
 						{row.time}
 					</Typography>
-					<Typography align="left" style={{ width: tableValues.host }}>
+					<Typography align="left" style={{width: tableValues.host}}>
 						{row.host}
 					</Typography>
 				</ExpansionPanelSummary>
 				<ExpansionPanelDetails>
-					<div style={{ alignContent: "row" }}>
+					<div style={{alignContent: "row"}}>
 						{this.getPeople(row.people)}
+						<Button
+							style={{color: "#7D19E5", backgroundColor: "#FCD704"}}
+							onClick={() => {
+								try {
+									var getData = functions.httpsCallable("joined");
+									console.log(row.eid);
+									getData({data: row.eid, email: this.props.email }).then(result => {
+										console.log(result.data.success);
+									});
+								} catch (error) {
+									console.log("error " + error);
+								}
+							}}>
+							JOIN
+						</Button>
 					</div>
 				</ExpansionPanelDetails>
 			</ExpansionPanel>
@@ -40,12 +57,10 @@ class TableView extends Component {
 	};
 
 	getPeople(people) {
-		console.log(people)
 		var peopleName = [];
 		Object.keys(people).forEach((key, index) => {
 			peopleName.push(people[key])
-		})
-
+		});
 		return (
 			peopleName.map(p =>
 				<div>
@@ -64,8 +79,7 @@ class TableView extends Component {
 						rows.push(event);
 					}
 				});
-			}
-			else if (this.props.type == "joined") {
+			} else if (this.props.type == "joined") {
 				this.props.events.map(event => {
 					Object.keys(event.people).forEach((key, index) => {
 						if (event.people[key] == this.props.email && event.people[key] != event.host) {
@@ -73,8 +87,7 @@ class TableView extends Component {
 						}
 					})
 				});
-			}
-			else {
+			} else {
 				rows = this.props.events;
 			}
 
@@ -85,21 +98,28 @@ class TableView extends Component {
 	render() {
 		return (
 			<div>
-				<ExpansionPanel style={{ width: "100%", backgroundColor: "black" }}>
+				<ExpansionPanel style={{width: "100%", backgroundColor: "black"}}>
 					<ExpansionPanelSummary>
-						<Typography style={{ width: tableValues.sport, color: "white", fontWeight: "bold", fontSize: 20 }} align="left">
+						<Typography style={{width: tableValues.sport, color: "white", fontWeight: "bold", fontSize: 20}}
+						            align="left">
 							Sport
 						</Typography>
-						<Typography style={{ width: tableValues.location, color: "white", fontWeight: "bold", fontSize: 20 }} align="left">
+						<Typography
+							style={{width: tableValues.location, color: "white", fontWeight: "bold", fontSize: 20}}
+							align="left">
 							Location
 						</Typography>
-						<Typography style={{ width: tableValues.capacity, color: "white", fontWeight: "bold", fontSize: 20 }} align="left">
+						<Typography
+							style={{width: tableValues.capacity, color: "white", fontWeight: "bold", fontSize: 20}}
+							align="left">
 							Capacity
 						</Typography>
-						<Typography style={{ width: tableValues.time, color: "white", fontWeight: "bold", fontSize: 20 }} align="left">
+						<Typography style={{width: tableValues.time, color: "white", fontWeight: "bold", fontSize: 20}}
+						            align="left">
 							Time
 						</Typography>
-						<Typography style={{ width: tableValues.host, color: "white", fontWeight: "bold", fontSize: 20 }} align="left">
+						<Typography style={{width: tableValues.host, color: "white", fontWeight: "bold", fontSize: 20}}
+						            align="left">
 							Host
 						</Typography>
 					</ExpansionPanelSummary>
