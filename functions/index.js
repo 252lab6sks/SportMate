@@ -39,7 +39,8 @@ exports.dataGet = functions.https.onCall((data, context) => {
           location: eventsObj[key].location,
           capacity: eventsObj[key].capacity,
           time: eventsObj[key].time,
-          host: eventsObj[key].host
+          host: eventsObj[key].host,
+          people: eventsObj[key].people,
         };
 
         events.push(row);
