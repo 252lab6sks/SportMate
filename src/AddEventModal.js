@@ -15,15 +15,17 @@ class AddEventModal extends Component {
 		selectedDate: new Date(),
 	};
 
+
 	eventSubmit = () => {
 		var ref = db.ref("events/").push();
 		var eventID = ref.key;
+		var time = this.formatDate(this.state.selectedDate);
 
 		db.ref("events/" + eventID + "/").set({
 			sport: this.props.details.sport,
 			location: this.props.details.location,
 			capacity: this.props.details.capacity,
-			time: this.props.details.time,
+			time: time,
 			people: {"host": `${this.props.details.email}`},
 			host: this.props.details.email
 
@@ -68,8 +70,8 @@ class AddEventModal extends Component {
 
 	handleDateChange = date => {
 		this.setState({selectedDate: date});
-		var formattedDate = this.formatDate(date);
-		this.props.details.time = formattedDate;
+		// var formattedDate = this.formatDate(date);
+		// this.props.details.time = formattedDate;
 	};
 
 	render() {
