@@ -43,22 +43,6 @@ class SignInForm extends Component {
 	signIn = (email, password) => {
 
 
-		try{
-		var addMessage = functions.httpsCallable('dataGet');
-		addMessage().then(function(result) {
-		console.log(result)
-		
-		}).catch(function(error) {
-		// Getting the Error details.
-		console.log(error)
-		// ...
-		});
-
-
-		}catch(error){
-			console.log("error "+error)
-		}
-
 		
 		auth.signInWithEmailAndPassword(email, password)
 			.then((response) => {

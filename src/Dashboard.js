@@ -45,6 +45,7 @@ class Dashboard extends Component {
 		try{
 		var getData = functions.httpsCallable('dataGet');
 		getData().then((result)=> {
+			
 			this.setState({
 					events: result.data.events,
 			});
