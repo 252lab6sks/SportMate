@@ -64,7 +64,14 @@ class Dashboard extends Component {
 	};
 
 	addEventOpen = () => {
-		this.setState({ addEventState: true });
+		this.setState({
+			addEventState: true,
+			sport: "",
+			location: "",
+			capacity: "",
+			people: {},
+			host: ""
+		});
 	};
 
 	addEventClose = () => {
