@@ -6,7 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
-import { auth } from "./base";
+import { auth,functions } from "./base";
 import axios from 'axios'
 
 class SignInForm extends Component {
@@ -20,6 +20,8 @@ class SignInForm extends Component {
 
 
 	createUser = async(email, password) => {
+
+		
 
 		auth.createUserWithEmailAndPassword(email, password)
 			.then((response) => {
@@ -41,6 +43,39 @@ class SignInForm extends Component {
 
 	signIn = (email, password) => {
 
+		try{
+		var addMessage = functions.httpsCallable('authChanged');
+		addMessage({email}).then(function(result) {
+		console.log("response "+result.data.message)
+		
+		}).catch(function(error) {
+		// Getting the Error details.
+		console.log(error)
+		// ...
+		});
+
+
+		}catch(error){
+			console.log("error "+error)
+		}
+
+		try{
+		var addMessage = functions.httpsCallable('dataGet');
+		addMessage().then(function(result) {
+		console.log(result)
+		
+		}).catch(function(error) {
+		// Getting the Error details.
+		console.log(error)
+		// ...
+		});
+
+
+		}catch(error){
+			console.log("error "+error)
+		}
+
+		
 		auth.signInWithEmailAndPassword(email, password)
 			.then((response) => {
 

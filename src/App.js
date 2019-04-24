@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import SignInForm from './SignInForm';
 import Dashboard from './Dashboard';
 import axios from 'axios'
+import {functions} from './base'
 
 class App extends Component {
 
@@ -11,13 +12,19 @@ class App extends Component {
 	};
 
 	componentDidMount(){
-		try{
-			 axios.get('https://cors-anywhere.herokuapp.com/https://us-central1-sportmate-9e1cf.cloudfunctions.net/createUser').then((response) => {
-      			console.log("response "+ response.data.displayName)
-    	})
-		}catch(err){
-			console.log("error "+err)
-		}
+		// try{
+		// 	 axios.get('https://cors-anywhere.herokuapp.com/https://us-central1-sportmate-9e1cf.cloudfunctions.net/createUser').then((response) => {
+      	// 		console.log("response "+ response.data)
+    	// })
+		// }catch(err){
+		// 	console.log("error "+err)
+		// }
+
+		
+
+		
+
+		
 		
 	}
 
