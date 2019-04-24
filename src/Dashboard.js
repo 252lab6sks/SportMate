@@ -60,22 +60,15 @@ class Dashboard extends Component {
 	}
 
 	handleChange = (event, value) => {
-		this.setState({value: value});
+		this.setState({ value: value });
 	};
 
 	addEventOpen = () => {
-		this.setState({
-			addEventState: true,
-			sport: "",
-			location: "",
-			capacity: "",
-			people: {},
-			host: ""
-		});
+		this.setState({ addEventState: true });
 	};
 
 	addEventClose = () => {
-		this.setState({addEventState: false});
+		this.setState({ addEventState: false });
 	};
 
 	eventSubmit = () => {
@@ -88,7 +81,7 @@ class Dashboard extends Component {
 				location: this.state.location,
 				capacity: this.state.capacity,
 				time: this.state.time,
-				people: {"1": `${this.state.email}`},
+				people: { "1": `${this.state.email}` },
 				host: this.state.email
 			})
 			.then(data => {
@@ -101,18 +94,18 @@ class Dashboard extends Component {
 	render() {
 		return (
 			<div>
-				<AppBar position="static" style={{background: "#7D19E5"}}>
+				<AppBar position="static" style={{ background: "#7D19E5" }}>
 					<Toolbar>
 						<Grid justify="space-between" container spacing={24}>
 							<Grid item>
 								<Typography variant="h6" color="inherit" align="left">
 									SportMate
-								</Typography>
+                				</Typography>
 							</Grid>
 
 							<Grid item>
 								<Button
-									style={{color: "#7D19E5", backgroundColor: "#FCD704"}}
+									style={{ color: "#7D19E5", backgroundColor: "#FCD704" }}
 									color="inherit"
 									onClick={() => {
 										localStorage.setItem("loggedIn", "false");
@@ -124,7 +117,7 @@ class Dashboard extends Component {
 									}}
 								>
 									Logout
-								</Button>
+                				</Button>
 							</Grid>
 						</Grid>
 					</Toolbar>
@@ -132,17 +125,17 @@ class Dashboard extends Component {
 
 				<div style={styles.card}>
 					<AppBar position="static">
-						<div style={{backgroundColor: "#7D19E5"}}>
+						<div style={{ backgroundColor: "#7D19E5" }}>
 							<Grid
 								justify="space-between"
 								alignItems="center"
 								container
-								spacing={24}
-							>
-								<Grid item style={{margin: 10, marginLeft: 20}}>
+								spacing={24}>
+
+								<Grid item style={{ margin: 10, marginLeft: 20 }}>
 									<Typography variant="h6" color="inherit" align="left">
 										Your Events
-									</Typography>
+                  					</Typography>
 								</Grid>
 
 								<Grid
@@ -152,16 +145,15 @@ class Dashboard extends Component {
 										marginBottom: "auto",
 										marginRight: 20
 									}}
-								>
+									>
 									<Button
-										style={{color: "#7D19E5", backgroundColor: "#FCD704"}}
+										style={{ color: "#7D19E5", backgroundColor: "#FCD704" }}
 										color="inherit"
 										onClick={() => {
 											this.addEventOpen();
-										}}
-									>
+										}}>
 										Add Event
-									</Button>
+                  					</Button>
 								</Grid>
 							</Grid>
 						</div>
@@ -169,41 +161,37 @@ class Dashboard extends Component {
 							variant="fullWidth"
 							value={this.state.value}
 							onChange={this.handleChange}
-							style={{background: "#7D19E5"}}
-						>
-							<Tab label="You created"/>
-							<Tab label="You joined"/>
+							style={{ background: "#7D19E5" }}>
+							<Tab label="You created" />
+							<Tab label="You joined" />
 						</Tabs>
 					</AppBar>
 					{this.state.value === 0 && (
 						<TableView
 							events={this.state.events}
 							type="created"
-							email={this.state.email}
-						/>
+							email={this.state.email}/>
 					)}
 					{this.state.value === 1 && (
 						<TableView
 							events={this.state.events}
 							type="joined"
-							email={this.state.email}
-						/>
+							email={this.state.email}/>
 					)}
 				</div>
 
 				<div style={styles.card}>
 					<AppBar position="static">
-						<div style={{backgroundColor: "#7D19E5"}}>
+						<div style={{ backgroundColor: "#7D19E5" }}>
 							<Grid
 								justify="space-between"
 								alignItems="center"
 								container
-								spacing={24}
-							>
-								<Grid item style={{margin: 10, marginLeft: 20}}>
+								spacing={24}>
+								<Grid item style={{ margin: 10, marginLeft: 20 }}>
 									<Typography variant="h6" color="inherit" align="left">
 										All Events
-									</Typography>
+                  					</Typography>
 								</Grid>
 							</Grid>
 						</div>
@@ -212,15 +200,13 @@ class Dashboard extends Component {
 					<TableView
 						events={this.state.events}
 						type="all"
-						email={this.state.email}
-					/>
+						email={this.state.email}/>
 				</div>
 
 				<AddEventModal
 					details={this.state}
 					addEventOpen={this.addEventOpen}
-					addEventClose={this.addEventClose}
-				/>
+					addEventClose={this.addEventClose}/>
 			</div>
 		);
 	}
@@ -233,32 +219,32 @@ const styles = {
 
 	card: {
 		marginTop: 20,
-		marginLeft: "auto",
-		marginRight: "auto",
-		width: 900
+		marginLeft: 'auto',
+		marginRight: 'auto',
+		width: "62%",
 	},
 
 	bar: {
-		backgroundColor: "#7D19E5"
+		backgroundColor: "#7D19E5",
 	},
 
 	root: {
-		flex: 3
+		flex: 3,
 	},
 
 	grow: {
-		flex: 1
+		flex: 1,
 	},
 
 	menuButton: {
 		marginLeft: -12,
-		marginRight: 20
+		marginRight: 20,
 	},
 
 	addEventInputStyle: {
 		marginTop: 30,
 		marginLeft: 15,
-		marginRight: 15
+		marginRight: 15,
 	}
 };
 
