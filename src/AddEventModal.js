@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
-import {db, functions} from './base';
+import {db} from './base';
 import {DateTimePicker, MuiPickersUtilsProvider} from 'material-ui-pickers';
 import DateFnsUtils from '@date-io/date-fns';
 
