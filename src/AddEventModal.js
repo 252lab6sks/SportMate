@@ -24,7 +24,7 @@ class AddEventModal extends Component {
 			location: this.props.details.location,
 			capacity: this.props.details.capacity,
 			time: this.props.details.time,
-			people: {"1": `${this.props.details.email}`},
+			people: {"host": `${this.props.details.email}`},
 			host: this.props.details.email
 
 		}).then((data) => {
