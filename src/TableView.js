@@ -4,7 +4,7 @@ import {Button, Typography} from "@material-ui/core";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import {functions, auth} from './base';
+import {functions} from './base';
 
 
 // TODO: SET MIN/MAX TABLE WIDTH VALUES
@@ -12,7 +12,29 @@ import {functions, auth} from './base';
 class TableView extends Component {
 	state = {};
 
-	getTableComponent(row) {
+	getButton(type, eid) {
+		if (type == "all") {
+			return (
+				<Button
+					style={{color: "#7D19E5", backgroundColor: "#FCD704"}}
+					onClick={() => {
+						try {
+							var getData = functions.httpsCallable("joined");
+							console.log(eid);
+							getData({data: eid, email: this.props.email}).then(result => {
+								console.log(result.data.success);
+							});
+						} catch (error) {
+							console.log("error " + error);
+						}
+					}}>
+					JOIN
+				</Button>
+			)
+		}
+	}
+
+	getTableComponent(row, type) {
 		return (
 			<ExpansionPanel style={{width: "100%"}}>
 				<ExpansionPanelSummary>
@@ -35,21 +57,7 @@ class TableView extends Component {
 				<ExpansionPanelDetails>
 					<div style={{alignContent: "row"}}>
 						{this.getPeople(row.people)}
-						<Button
-							style={{color: "#7D19E5", backgroundColor: "#FCD704"}}
-							onClick={() => {
-								try {
-									var getData = functions.httpsCallable("joined");
-									console.log(row.eid);
-									getData({data: row.eid, email: this.props.email }).then(result => {
-										console.log(result.data.success);
-									});
-								} catch (error) {
-									console.log("error " + error);
-								}
-							}}>
-							JOIN
-						</Button>
+						{this.getButton(type, row.eid)}
 					</div>
 				</ExpansionPanelDetails>
 			</ExpansionPanel>
@@ -88,10 +96,22 @@ class TableView extends Component {
 					})
 				});
 			} else {
-				rows = this.props.events;
+				this.props.events.map(event => {
+					if (event.host != this.props.email) {
+						let flag = 0;
+						Object.keys(event.people).forEach((key, index) => {
+							if (event.people[key] == this.props.email) {
+								flag = 1;
+							}
+						});
+						if (flag == 0) {
+							rows.push(event);
+						}
+					}
+				});
 			}
 
-			return (rows.map(row => this.getTableComponent(row)));
+			return (rows.map(row => this.getTableComponent(row, this.props.type)));
 		}
 	};
 
