@@ -1,0 +1,32 @@
+[debug] [2019-04-20T02:59:21.423Z] ----------------------------------------------------------------------
+[debug] [2019-04-20T02:59:21.426Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2019-04-20T02:59:21.426Z] CLI Version:   6.7.0
+[debug] [2019-04-20T02:59:21.426Z] Platform:      darwin
+[debug] [2019-04-20T02:59:21.426Z] Node Version:  v8.10.0
+[debug] [2019-04-20T02:59:21.426Z] Time:          Fri Apr 19 2019 22:59:21 GMT-0400 (EDT)
+[debug] [2019-04-20T02:59:21.426Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-04-20T02:59:21.438Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-04-20T02:59:21.438Z] > authorizing via signed-in user
+[debug] [2019-04-20T02:59:21.438Z] [iam] checking project sportmate-9e1cf for permissions ["firebase.projects.get"]
+[debug] [2019-04-20T02:59:21.440Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/sportmate-9e1cf:testIamPermissions  
+
+[debug] [2019-04-20T02:59:22.079Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-20T02:59:22.080Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/sportmate-9e1cf  
+ 
+[debug] [2019-04-20T02:59:22.244Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/sehajbirrandhawa/Desktop/SportMate'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2019-04-20T02:59:22.786Z] Fetching environment
+[debug] [2019-04-20T02:59:22.788Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/629833329562:getServerAppConfig  
+ 
+[debug] [2019-04-20T02:59:22.789Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/629833329562/clients/_:getWebAppConfig  
+ 
+[debug] [2019-04-20T02:59:22.945Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-20T02:59:22.945Z] Starting @google-cloud/functions-emulator
+[debug] [2019-04-20T02:59:23.007Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+[debug] [2019-04-20T02:59:24.008Z] Parsing function triggers

@@ -1,0 +1,25 @@
+[debug] [2019-04-20T03:05:41.918Z] ----------------------------------------------------------------------
+[debug] [2019-04-20T03:05:41.920Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve --only hosting
+[debug] [2019-04-20T03:05:41.920Z] CLI Version:   6.7.0
+[debug] [2019-04-20T03:05:41.920Z] Platform:      darwin
+[debug] [2019-04-20T03:05:41.920Z] Node Version:  v8.10.0
+[debug] [2019-04-20T03:05:41.920Z] Time:          Fri Apr 19 2019 23:05:41 GMT-0400 (EDT)
+[debug] [2019-04-20T03:05:41.920Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-04-20T03:05:41.928Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-04-20T03:05:41.928Z] > authorizing via signed-in user
+[debug] [2019-04-20T03:05:41.928Z] [iam] checking project sportmate-9e1cf for permissions ["firebase.projects.get"]
+[debug] [2019-04-20T03:05:41.930Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/sportmate-9e1cf:testIamPermissions  
+
+[debug] [2019-04-20T03:05:42.190Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-20T03:05:42.191Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/sportmate-9e1cf  
+ 
+[debug] [2019-04-20T03:05:42.406Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/sehajbirrandhawa/Desktop/SportMate'...
+[info] 
+[debug] [2019-04-20T03:05:42.407Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/629833329562/clients/_:getWebAppConfig  
+ 
+[debug] [2019-04-20T03:05:42.644Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000

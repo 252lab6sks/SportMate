@@ -9,6 +9,23 @@ class App extends Component {
 		uid: '',
 	};
 
+	componentDidMount(){
+		// try{
+		// 	 axios.get('https://cors-anywhere.herokuapp.com/https://us-central1-sportmate-9e1cf.cloudfunctions.net/createUser').then((response) => {
+      	// 		console.log("response "+ response.data)
+    	// })
+		// }catch(err){
+		// 	console.log("error "+err)
+		// }
+
+		
+
+		
+
+		
+		
+	}
+
 	//binding to this when sending to child because setting state of parent
 	SignInHandler(status) {
 		this.setState({

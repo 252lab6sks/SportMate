@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./Dashboard.css";
-import Paper from "@material-ui/core/Paper";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
@@ -30,6 +29,7 @@ class Dashboard extends Component {
 	componentWillMount() {
 		let email = localStorage.getItem('email');
 		let uid = localStorage.getItem('uid');
+
 		this.setState({
 			email: email,
 			uid: uid,
@@ -39,9 +39,7 @@ class Dashboard extends Component {
 			this.setState({
 				events: snapshot.val(),
 			});
-			// console.log(this.state.events);
 		});
-
 	}
 
 	handleChange = (event, value) => {
