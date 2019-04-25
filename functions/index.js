@@ -41,7 +41,7 @@ exports.dataGet = functions.https.onCall((data, context) => {
 					time: eventsObj[key].time,
 					host: eventsObj[key].host,
 					people: eventsObj[key].people,
-					eid: eventsObj[key].eid,
+					eid: eventsObj[key].eid
 				};
 
 				events.push(row);
@@ -55,7 +55,6 @@ exports.dataGet = functions.https.onCall((data, context) => {
 });
 
 exports.joined = functions.https.onCall((data, context) => {
-
 	return admin
 		.database()
 		.ref("events/" + data.data + "/people/")
@@ -63,7 +62,18 @@ exports.joined = functions.https.onCall((data, context) => {
 		.then(() => {
 			return {
 				success: data.data
-			}
+			};
 		});
+});
 
+exports.delete = functions.https.onCall((data, context) => {
+	return admin
+		.database()
+		.ref("events/" + data.data + "/")
+		.remove()
+		.then(() => {
+			return {
+				success: "Removed!"
+			};
+		});
 });

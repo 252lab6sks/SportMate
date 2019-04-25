@@ -31,6 +31,23 @@ class TableView extends Component {
 					JOIN
 				</Button>
 			)
+		} else if (type == "created") {
+			return (
+				<Button
+					style={{color: "#7D19E5", backgroundColor: "#FCD704"}}
+					onClick={() => {
+						try {
+							var getData = functions.httpsCallable("delete");
+							getData({data: eid}).then(result => {
+								console.log(result.data.success);
+							});
+						} catch (error) {
+							console.log("error " + error);
+						}
+					}}>
+					COMPLETE
+				</Button>
+			)
 		}
 	}
 

@@ -38,7 +38,7 @@ class App extends Component {
 	render() {
 		var loggedIn = localStorage.getItem('loggedIn');
 		console.log('login: ' + loggedIn);
-		if (loggedIn === 'false') {
+		if (loggedIn === 'false' || loggedIn == null) {
 			return <SignInForm SignInHandler={this.SignInHandler.bind(this)}/>;
 		} else {
 			return <Dashboard SignInHandler={this.SignInHandler.bind(this)} userDetails={this.state}/>;

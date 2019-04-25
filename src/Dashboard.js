@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import "./Dashboard.css";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
@@ -9,7 +9,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import TableView from "./TableView";
 import AddEventModal from "./AddEventModal.js";
-import {db, functions} from "./base";
+import { db, functions } from "./base";
 
 class Dashboard extends Component {
 	state = {
@@ -107,7 +107,7 @@ class Dashboard extends Component {
 							<Grid item>
 								<Typography variant="h6" color="inherit" align="left">
 									SportMate
-                				</Typography>
+								</Typography>
 							</Grid>
 
 							<Grid item>
@@ -124,7 +124,7 @@ class Dashboard extends Component {
 									}}
 								>
 									Logout
-                				</Button>
+								</Button>
 							</Grid>
 						</Grid>
 					</Toolbar>
@@ -137,12 +137,12 @@ class Dashboard extends Component {
 								justify="space-between"
 								alignItems="center"
 								container
-								spacing={24}>
-
+								spacing={24}
+							>
 								<Grid item style={{ margin: 10, marginLeft: 20 }}>
 									<Typography variant="h6" color="inherit" align="left">
 										Your Events
-                  					</Typography>
+									</Typography>
 								</Grid>
 
 								<Grid
@@ -152,15 +152,16 @@ class Dashboard extends Component {
 										marginBottom: "auto",
 										marginRight: 20
 									}}
-									>
+								>
 									<Button
 										style={{ color: "#7D19E5", backgroundColor: "#FCD704" }}
 										color="inherit"
 										onClick={() => {
 											this.addEventOpen();
-										}}>
+										}}
+									>
 										Add Event
-                  					</Button>
+									</Button>
 								</Grid>
 							</Grid>
 						</div>
@@ -168,7 +169,8 @@ class Dashboard extends Component {
 							variant="fullWidth"
 							value={this.state.value}
 							onChange={this.handleChange}
-							style={{ background: "#7D19E5" }}>
+							style={{ background: "#7D19E5" }}
+						>
 							<Tab label="You created" />
 							<Tab label="You joined" />
 						</Tabs>
@@ -177,13 +179,15 @@ class Dashboard extends Component {
 						<TableView
 							events={this.state.events}
 							type="created"
-							email={this.state.email}/>
+							email={this.state.email}
+						/>
 					)}
 					{this.state.value === 1 && (
 						<TableView
 							events={this.state.events}
 							type="joined"
-							email={this.state.email}/>
+							email={this.state.email}
+						/>
 					)}
 				</div>
 
@@ -194,11 +198,12 @@ class Dashboard extends Component {
 								justify="space-between"
 								alignItems="center"
 								container
-								spacing={24}>
+								spacing={24}
+							>
 								<Grid item style={{ margin: 10, marginLeft: 20 }}>
 									<Typography variant="h6" color="inherit" align="left">
 										All Events
-                  					</Typography>
+									</Typography>
 								</Grid>
 							</Grid>
 						</div>
@@ -207,13 +212,15 @@ class Dashboard extends Component {
 					<TableView
 						events={this.state.events}
 						type="all"
-						email={this.state.email}/>
+						email={this.state.email}
+					/>
 				</div>
 
 				<AddEventModal
 					details={this.state}
 					addEventOpen={this.addEventOpen}
-					addEventClose={this.addEventClose}/>
+					addEventClose={this.addEventClose}
+				/>
 			</div>
 		);
 	}
@@ -234,26 +241,26 @@ const styles = {
 	},
 
 	bar: {
-		backgroundColor: "#7D19E5",
+		backgroundColor: "#7D19E5"
 	},
 
 	root: {
-		flex: 3,
+		flex: 3
 	},
 
 	grow: {
-		flex: 1,
+		flex: 1
 	},
 
 	menuButton: {
 		marginLeft: -12,
-		marginRight: 20,
+		marginRight: 20
 	},
 
 	addEventInputStyle: {
 		marginTop: 30,
 		marginLeft: 15,
-		marginRight: 15,
+		marginRight: 15
 	}
 };
 
