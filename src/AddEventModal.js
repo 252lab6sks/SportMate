@@ -24,7 +24,6 @@ class AddEventModal extends Component {
 		db.ref("events/" + eventID + "/").set({
 			sport: this.props.details.sport,
 			location: this.props.details.location,
-			capacity: this.props.details.capacity,
 			time: time,
 			people: {"host": `${this.props.details.email}`},
 			host: this.props.details.email,
@@ -102,17 +101,6 @@ class AddEventModal extends Component {
 							style={{width: 300}}
 							onChange={event => {
 								this.props.details.location = event.target.value
-							}}
-						/>
-					</FormControl>
-					<FormControl
-						style={{marginLeft: 20, marginRight: 20, marginTop: 15}}
-					>
-						<InputLabel> Capacity </InputLabel>
-						<Input
-							style={{width: 300}}
-							onChange={event => {
-								this.props.details.capacity = event.target.value
 							}}
 						/>
 					</FormControl>

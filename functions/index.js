@@ -37,7 +37,6 @@ exports.dataGet = functions.https.onCall((data, context) => {
 					id: id,
 					sport: eventsObj[key].sport,
 					location: eventsObj[key].location,
-					capacity: eventsObj[key].capacity,
 					time: eventsObj[key].time,
 					host: eventsObj[key].host,
 					people: eventsObj[key].people,

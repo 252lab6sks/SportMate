@@ -67,11 +67,6 @@ class TableView extends Component {
 					</Typography>
 					<Typography 
 						align="left" 
-						style={{ minWidth: 90, width: tableValues.capacity }}>
-						{row.capacity}
-					</Typography>
-					<Typography 
-						align="left" 
 						style={{ minWidth: 53, width: tableValues.time }}>
 						{row.time}
 					</Typography>
@@ -158,11 +153,6 @@ class TableView extends Component {
 							Location
 						</Typography>
 						<Typography
-							style={{ minWidth: 90, width: tableValues.capacity, color: "white", fontWeight: "bold", fontSize: 20 }}
-							align="left">
-							Capacity
-						</Typography>
-						<Typography
 							style={{ minWidth: 53, width: tableValues.time, color: "white", fontWeight: "bold", fontSize: 20 }}
 							align="left">
 							Time
@@ -183,7 +173,6 @@ class TableView extends Component {
 const tableValues = {
 	sport: "12.9%",
 	location: "35.2%",
-	capacity: "13.1%",
 	time: "20.5%",
 	host: "20.3%",
 };
