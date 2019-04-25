@@ -229,6 +229,8 @@ const styles = {
 		marginLeft: 'auto',
 		marginRight: 'auto',
 		width: "62%",
+		maxWidth: 900,
+		minWidth: 550,
 	},
 
 	bar: {
