@@ -38,19 +38,29 @@ class TableView extends Component {
 		return (
 			<ExpansionPanel style={{ width: "100%" }}>
 				<ExpansionPanelSummary>
-					<Typography align="left" style={{ width: tableValues.sport }}>
+					<Typography 
+						align="left" 
+						style={{ minWidth: 65, width: tableValues.sport }}>
 						{row.sport}
 					</Typography>
-					<Typography align="left" style={{ width: tableValues.location }}>
+					<Typography 
+						align="left" 
+						style={{ minWidth: 90, width: tableValues.location }}>
 						{row.location}
 					</Typography>
-					<Typography align="left" style={{ width: tableValues.capacity }}>
+					<Typography 
+						align="left" 
+						style={{ minWidth: 90, width: tableValues.capacity }}>
 						{row.capacity}
 					</Typography>
-					<Typography align="left" style={{ width: tableValues.time }}>
+					<Typography 
+						align="left" 
+						style={{ minWidth: 53, width: tableValues.time }}>
 						{row.time}
 					</Typography>
-					<Typography align="left" style={{ width: tableValues.host }}>
+					<Typography 
+						align="left" 
+						style={{ minWidth: 60,width: tableValues.host }}>
 						{row.host}
 					</Typography>
 				</ExpansionPanelSummary>
