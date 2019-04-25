@@ -19,7 +19,6 @@ class Dashboard extends Component {
 		addEventState: false,
 		sport: "",
 		location: "",
-		capacity: "",
 		time: "",
 		host: "",
 		events: []
@@ -68,7 +67,6 @@ class Dashboard extends Component {
 			addEventState: true,
 			sport: "",
 			location: "",
-			capacity: "",
 			people: {},
 			host: ""
 		});
@@ -86,7 +84,6 @@ class Dashboard extends Component {
 			.set({
 				sport: this.state.sport,
 				location: this.state.location,
-				capacity: this.state.capacity,
 				time: this.state.time,
 				people: { "1": `${this.state.email}` },
 				host: this.state.email
