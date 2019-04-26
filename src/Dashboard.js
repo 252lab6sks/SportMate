@@ -21,7 +21,8 @@ class Dashboard extends Component {
 		location: "",
 		time: "",
 		host: "",
-		events: []
+		events: [],
+		date: {}
 	};
 
 	componentWillMount() {
@@ -63,12 +64,14 @@ class Dashboard extends Component {
 	};
 
 	addEventOpen = () => {
+		let date = new Date();
 		this.setState({
 			addEventState: true,
 			sport: "",
 			location: "",
 			people: {},
-			host: ""
+			host: "",
+			date: date
 		});
 	};
 

@@ -54,8 +54,8 @@ class AddEventModal extends Component {
 			"November", "December"
 		];
 		let dayNames = [
-			"Mon", "Tue", "Wed",
-			"Thu", "Fri", "Sat", "Sun"
+			"Monday", "Tuesday", "Wednesday",
+			"Thursday", "Friday", "Saturday", "Sunday"
 		];
 		var day = date.getDate();
 		var monthIndex = date.getMonth();
@@ -65,7 +65,7 @@ class AddEventModal extends Component {
 		var min = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes();
 		var ampm = (date.getHours() < 12) ? 'AM' : 'PM';
 
-		return dayNames[weekday] + ', ' + monthNames[monthIndex] + ' ' + day + ' ' + hour + ':' + min + ' ' + ampm;
+		return dayNames[weekday] + ', ' + monthNames[monthIndex] + ' ' + day + ' @ ' + hour + ':' + min + ' ' + ampm;
 	}
 
 	handleDateChange = date => {
