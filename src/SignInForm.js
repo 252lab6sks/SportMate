@@ -20,8 +20,6 @@ class SignInForm extends Component {
 
 	createUser = async(email, password) => {
 
-		
-
 		auth.createUserWithEmailAndPassword(email, password)
 			.then((response) => {
 

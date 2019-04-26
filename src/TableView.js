@@ -57,22 +57,22 @@ class TableView extends Component {
 				<ExpansionPanelSummary>
 					<Typography 
 						align="left" 
-						style={{ minWidth: 65, width: tableValues.sport }}>
+						style={{ minWidth: 75, width: tableValues.sport }}>
 						{row.sport}
 					</Typography>
 					<Typography 
 						align="left" 
-						style={{ minWidth: 90, width: tableValues.location }}>
+						style={{ minWidth: 100, width: tableValues.location }}>
 						{row.location}
 					</Typography>
 					<Typography 
 						align="left" 
-						style={{ minWidth: 53, width: tableValues.time }}>
+						style={{ minWidth: 63, width: tableValues.time }}>
 						{row.time}
 					</Typography>
 					<Typography 
 						align="left" 
-						style={{ minWidth: 60,width: tableValues.host }}>
+						style={{ minWidth: 70,width: tableValues.host }}>
 						{row.host}
 					</Typography>
 				</ExpansionPanelSummary>
@@ -143,22 +143,22 @@ class TableView extends Component {
 				<ExpansionPanel style={{ width: "100%", backgroundColor: "black" }}>
 					<ExpansionPanelSummary>
 						<Typography
-							style={{ minWidth: 65, width: tableValues.sport, color: "white", fontWeight: "bold", fontSize: 20 }}
+							style={{ minWidth: 75, width: tableValues.sport, color: "white", fontWeight: "bold", fontSize: 20 }}
 							align="left">
 							Sport
 						</Typography>
 						<Typography
-							style={{ minWidth: 90, width: tableValues.location, color: "white", fontWeight: "bold", fontSize: 20 }}
+							style={{ minWidth: 100, width: tableValues.location, color: "white", fontWeight: "bold", fontSize: 20 }}
 							align="left">
 							Location
 						</Typography>
 						<Typography
-							style={{ minWidth: 53, width: tableValues.time, color: "white", fontWeight: "bold", fontSize: 20 }}
+							style={{ minWidth: 63, width: tableValues.time, color: "white", fontWeight: "bold", fontSize: 20 }}
 							align="left">
 							Time
 						</Typography>
 						<Typography
-							style={{ minWidth: 60, width: tableValues.host, color: "white", fontWeight: "bold", fontSize: 20 }}
+							style={{ minWidth: 70, width: tableValues.host, color: "white", fontWeight: "bold", fontSize: 20 }}
 							align="left">
 							Host
 						</Typography>
@@ -171,10 +171,10 @@ class TableView extends Component {
 }
 
 const tableValues = {
-	sport: "12.9%",
-	location: "35.2%",
-	time: "20.5%",
-	host: "20.3%",
+	sport: "15.9%",
+	location: "38.2%",
+	time: "24.5%",
+	host: "23.3%",
 };
 
 export default TableView;
