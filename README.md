@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## SportMate
+
+SportMate web-application made in React lets you host groups for sport events for everyone to join and play together.
 
 ## Available Scripts
 
